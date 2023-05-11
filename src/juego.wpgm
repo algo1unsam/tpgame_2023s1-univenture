@@ -1,5 +1,5 @@
 import wollok.game.*
-import pepita.*
+import personas.*
 
 program juego {
 	game.title("Juego Base")
