@@ -5,7 +5,7 @@
 ## Equipo de desarrollo
 
 - Cristian Villafañez
-- Valentín Bortolussi
+- Valentino Bortolussi
 - Nancy Vargas
 - Martín De Lojo
 
