@@ -1,9 +1,10 @@
 import wollok.game.*
+import topos.*
 
-object pepita {
+object config {
 
-	method position() = game.center()
-
-	method image() = "pepita.png"
+	method user_inputs() {
+		keyboard.i().onPressDo { game.say(topo1, "hola!") }
+	}
 
 }
