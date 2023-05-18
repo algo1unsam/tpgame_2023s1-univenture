@@ -18,8 +18,8 @@ object reloj {
 	
 	method textColor() = "FFFFFFFF"
 	
-	method text() = tiempo.toString()
-	method position() = game.at(1, game.height()-3)
+	method text() = "Reloj:" + tiempo.toString()
+	method position() = game.at(2, game.height()-3)
 	
 	method pasarTiempo() {
 		tiempo += 1
