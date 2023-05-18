@@ -25,7 +25,9 @@ object reloj {
 	method pasarTiempo() {
 		if (tiempo == 0) {
 			self.detener()
-		} else {tiempo -= 1}
+		} else {
+			tiempo -= 1
+		}
 	}
 
 	method iniciar() {
