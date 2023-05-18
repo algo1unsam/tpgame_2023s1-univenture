@@ -1,20 +1,27 @@
 import wollok.game.*
 import config.*
 
+object puntaje {
+
+	var property puntajeTotal = 0
+
+	method position() = game.at(1, game.height() - 4)
+
+	method textColor() = "FFFFFFFF"
+
+	method text() = self.puntajeTotal().toString()
+
+}
+
 class Topo {
 
 	method golpe() {
-		
 	}
 
 }
-object puntaje {
-	var property puntajeTotal = 0
-}
-
 
 object topoNormal {
-	
+
 }
 
 object topoAgua inherits Topo {
