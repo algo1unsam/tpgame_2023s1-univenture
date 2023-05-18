@@ -1,31 +1,38 @@
 import wollok.game.*
+import topos.*
 
-object funciones {
+class Listas {
 
-	method rand(lista) {
-		return self.redondear(0.randomUpTo(self.tamanioListaNull(lista))) - 1
-	}
-
-	method redondear(num) {
-		return num.roundUp()
-	}
-
-	method tamanioListaNull(lista) {
-		return lista.size() - 1
-	}
-	method topoAlAzar(lista){
+	method alAzar(lista) {
 		return lista.anyOne()
 	}
-}
-
-object listaDeNumeros {
-
-	// EL PRIMER VALOR DEBE SER NULO
-	var property lista = [ null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
 }
 
-object listaTopos {
+object listaTopos inherits Listas {
+
+	const listTopo = new List()
+
+	method setAgregarTopo(topo) {
+		if (not self.repetido(topo)) {
+			listTopo.add(topo)
+		}
+	}
+
+	method repetido(topo) = listTopo.contains(topo)
+
+}
+
+object listaPosiciones inherits Listas {
+
+	const property pos = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+object lista {
 
 	var property listTopo = new Dictionary()
 	var id = 0
@@ -38,9 +45,10 @@ object listaTopos {
 	method idLista() {
 		return listTopo.values()
 	}
+
 //Por si las dudas.
 	method joinNull() {
-		return [null]+(self.idLista())
+		return [ null ] + (self.idLista())
 	}
 
 	method idListaConNull() {
@@ -48,3 +56,26 @@ object listaTopos {
 	}
 
 }
+
+object funciones {
+
+	// RAND NUMEROS
+	method rand(lista) {
+		return self.redondear(0.randomUpTo(self.tamanioListaNull(lista))) - 1
+	}
+
+	method redondear(num) {
+		return num.roundUp()
+	}
+
+	method tamanioListaNull(lista) {
+		return lista.size() - 1
+	}
+
+	// RAND TOPOS
+	method alAzar(lista) {
+		return lista.anyOne()
+	}
+
+}
+

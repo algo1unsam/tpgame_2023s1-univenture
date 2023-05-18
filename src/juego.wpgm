@@ -7,6 +7,7 @@ program juego {
 	game.width(40)
  	game.height(30)
   	game.cellSize(30)
-  	game.boardGround("back_30.png")
+	//Menu
+	menu.comenzar()
 	game.start()
 }

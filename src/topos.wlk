@@ -2,10 +2,39 @@ import wollok.game.*
 import config.*
 
 class Topo {
-	
-	var property position
 
-	method image() = "cell_30.png"
+	method golpe() {
+		
+	}
+
+}
+object puntaje {
+	var property puntajeTotal = 0
 }
 
-const topo1 = new Topo(position = game.center())
+
+object topoNormal {
+	
+}
+
+object topoAgua inherits Topo {
+
+	override method golpe() {
+	}
+
+}
+
+object topoFuego inherits Topo {
+
+	override method golpe() {
+	}
+
+}
+
+object topoTierra inherits Topo {
+
+	override method golpe() {
+	}
+
+}
+
