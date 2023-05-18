@@ -5,12 +5,12 @@ object puntaje {
 
 	var property puntajeTotal = 0
 
-	method position() = game.at(2, game.height() - 4)
+	method position() = game.at(1, game.height() - 4)
 
 	method textColor() = "FFFFFFFF"
 	
 
-	method text() = "Puntaje : " + self.puntajeTotal().toString()
+	method text() = "Puntaje: " + self.puntajeTotal().toString()
 
 }
 
