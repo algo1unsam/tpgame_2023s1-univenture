@@ -8,7 +8,7 @@ object escenario1 inherits Escena {
 
 	var property position = game.origin()
 
-	method image() = "back_nivel1.png"
+	method image() = "back_template.png"
 
 }
 
