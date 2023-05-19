@@ -4,7 +4,7 @@ import tutorial.*
 
 object menu {
 	method comenzar(){
-		nivel.cargar()
+		nivel1.cargar()
 	}
 	method instrucciones(){
 		
