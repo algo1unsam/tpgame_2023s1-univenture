@@ -1,6 +1,7 @@
 import wollok.game.*
 import topos.*
 import escenarios.*
+import wlklib.*
 
 class Nivel {
 }
@@ -8,19 +9,58 @@ class Nivel {
 object nivel1 inherits Nivel {
 
 	const listaTopo = [ topoNormal, topoFuego, topoAgua, topoTierra ]
-	const listaPosiciones = [ pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9 ]
-
+//	const listaPosiciones = [ pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9 ]
+	const listaPosiciones = [
+		game.at(1, 19),
+		game.at(17, 18),
+		game.at(28, 16),
+		game.at(7, 13),
+		game.at(18, 9),
+		game.at(28, 10),
+		game.at(3, 5),
+		game.at(14, 2),
+		game.at(26, 3)
+	]
+	const listaPrueba = []
+	
+//	method cargar() {
+//		game.addVisual(escenario1)
+//		game.addVisual(reloj)
+//		game.addVisual(puntaje)
+//		self.dibujarTopo()
+//		reloj.iniciar()
+//	}
+	
 	method cargar() {
 		game.addVisual(escenario1)
 		game.addVisual(reloj)
 		game.addVisual(puntaje)
-		self.dibujarTopo()
+		keyboard.space().onPressDo({ self.dibujarTopo() })
+		keyboard.w().onPressDo({ self.pegar() })
 		reloj.iniciar()
 	}
 
 	method dibujarTopo() {
-		// game.addVisualIn(self.alAzar(listaTopo), self.alAzar(listaPosiciones).position())
-		game.addVisualIn(self.alAzar(listaTopo), listaPosiciones.get(0.randomUpTo(8)).position())
+		
+		const topoRandom = self.alAzar(listaTopo)
+		const posRandom = self.alAzar(listaPosiciones)
+		
+		
+		topoRandom.position(posRandom)
+		game.addVisual(topoRandom)
+//		listaTopo.remove(topoRandom)
+		listaPrueba.add(topoRandom)
+		
+		essentials.makeCycle(20, topoRandom.sprite().frames()-1, { topoRandom.image(topoRandom.sprite().cycle()) })
+		game.schedule(20*topoRandom.sprite().frames(), { topoRandom.inmunidad(false) })
+		
+//      game.addVisualIn(self.alAzar(listaTopo), self.alAzar(listaPosiciones).position())
+//		game.addVisualIn(self.alAzar(listaTopo), listaPosiciones.get(0.randomUpTo(8)).position())
+	}
+	
+	// todo nuevo
+	method pegar() {
+		listaPrueba.forEach({ e => if(not e.inmunidad()) {game.removeVisual(e); listaPrueba.remove(e)} })
 	}
 
 	method borrarTopo() {
