@@ -7,6 +7,8 @@ program juego {
 	game.width(40)
  	game.height(30)
   	game.cellSize(30)
+  	//Teclas
+  	config.configurarTeclas()
 	//Menu
 	menu.comenzar()
 	game.start()
