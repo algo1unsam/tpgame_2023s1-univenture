@@ -5,7 +5,7 @@ object config {
 
 	// Teclado
 	method configurarTeclas() {
-		keyboard.num1().onPressDo({ self.coll(1, 19)}) // pos = game.at(1,19)
+		self.numpad1().onPressDo({ self.coll(1, 19)}) // pos = game.at(1,19)
 		keyboard.num2().onPressDo({ self.coll(17, 18)}) // pos = game.at(17,18)
 		keyboard.num3().onPressDo({ self.coll(28, 16)}) // pos = game.at(28,16)
 		keyboard.num4().onPressDo({ self.coll(7, 13)}) // pos = game.at(7,13)
@@ -24,6 +24,11 @@ object config {
 		} else {
 			objectList.forEach({ topo => topo.golpe()})
 		}
+	}
+	
+	method numpad1() {
+		return new Key(keyCodes = ['NumPad-0'])		
+		
 	}
 
 }
