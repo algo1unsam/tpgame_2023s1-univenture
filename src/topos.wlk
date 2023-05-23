@@ -9,14 +9,14 @@ class Topo {
 	
 	var property position = game.at(-1, -1)
 	
-	const property sprite = new Sprite(frames = 10, path="animacion_topo/frame#.png")
+	const property sprite = new Sprite(frames = 7, path="topo_tierra/frame#.png")
 	
 	var property image = sprite.getFrame()
 	
 	
 	// 50 fps (1000 ms)
 	// 200 ms -> topoNormal (10 frames)
-	// 150 ms -> topoTierra (15 ms / frame)
+	// 150 ms -> topoTierra (7 frames)
 	// 100 ms -> topoAgua (5 frames)
 	// 100 ms -> topoFuego (5 frames)
 	

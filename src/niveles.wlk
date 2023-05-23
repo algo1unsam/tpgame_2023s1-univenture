@@ -51,8 +51,8 @@ object nivel1 inherits Nivel {
 //		listaTopo.remove(topoRandom)
 		listaPrueba.add(topoRandom)
 		
-		essentials.makeCycle(20, topoRandom.sprite().frames()-1, { topoRandom.image(topoRandom.sprite().cycle()) })
-		game.schedule(20*topoRandom.sprite().frames(), { topoRandom.inmunidad(false) })
+		essentials.makeCycle(10, topoRandom.sprite().frames()-1, { topoRandom.image(topoRandom.sprite().cycle()) })
+		game.schedule(10*topoRandom.sprite().frames(), { topoRandom.inmunidad(false) })
 		
 //      game.addVisualIn(self.alAzar(listaTopo), self.alAzar(listaPosiciones).position())
 //		game.addVisualIn(self.alAzar(listaTopo), listaPosiciones.get(0.randomUpTo(8)).position())
