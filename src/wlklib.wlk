@@ -41,6 +41,39 @@ object essentials inherits _inf_inc {
 				} else game.removeTickEvent(blockName)
 			})
 		}
+		
+		method makeCycle(ms, times, block, name) {
+			var _times = times
+			game.onTick(ms, name, {
+				if (_times > 0){
+					block.apply()
+					_times = _times - 1
+				} else game.removeTickEvent(name)
+			})
+		}
+		
+		method makeCycle(ms, times, block, name, endBlock) {
+			var _times = times
+			game.onTick(ms, name, {
+				if (_times > 0){
+					if (_times == 0) { endBlock.apply() }
+					block.apply()
+					_times = _times - 1
+				} else game.removeTickEvent(name)
+			})
+		}
+		
+		method makeCycle(ms, times, block, name, endBlock, cycleOffsetBlock) {
+			var _times = times
+			game.onTick(ms, name, {
+				if (_times > 0){
+					block.apply()
+					_times = _times - 1
+					if (_times == 0) { endBlock.apply() }
+				} else {game.removeTickEvent(name); cycleOffsetBlock.apply() }
+			})
+		}
+		
 	}
 
 package spriteModule {
@@ -81,6 +114,7 @@ package spriteModule {
 		}
 	
 		method getFrame() {	return self.getFrame(index + cycleRange.first()) }
+		method getFrameNumber() {	return index + cycleRange.first() }
 		
 		// Metodos para setear un frame en particular o un offset.
 		method setFrame(_frame) {
@@ -95,13 +129,17 @@ package spriteModule {
 			return self.getFrame()
 		}
 		
+		method getIndex() = index
+		
+		method remainingFrames() = (cycleRange.last()-cycleRange.first()+1) - index
+		
 		method cycle() {
 			index = (index + 1) % (cycleRange.last()-cycleRange.first() + 1)
 			return self.getFrame()
 		}
 		
 		
-		// frame  first  x
+		// framef  first  x
 		// x = frame + first
 		
 		// Rango de ciclo (primer y ultimo frame) setter y getter.
@@ -110,5 +148,74 @@ package spriteModule {
 			return self.getFrame(_firstframe)
 		}
 		method getRange() = cycleRange.first()..cycleRange.last()
-	}	
+	}
+	
+	// Cosas agregadas ahora	
+}
+
+// Para debugear con sprites.
+package debug {
+	class _DebugObject {
+		var thickness;
+		var height;
+		var property position = game.at(game.width()+1, game.height()+1);
+		var property worldPosition = [0,0]
+		
+		method thickness() = thickness;
+		method height() = height;
+		
+		method center() = game.at(position.x() + thickness/2 - 2, position.y() + height/2 - 2)
+		method center(_pos) {
+			position = _pos;
+			position = game.at(_pos.x() - ( thickness/2 - 2), _pos.y() - (height/2 - 2));
+		}
+	}
+	
+	class WollokObject inherits _DebugObject {
+		var property image;
+	}
+	
+	// Objetos para debugear
+	class Box32 inherits _DebugObject {
+		var property image = 'debug/texture32x32.png'
+		method initialize() {
+			thickness = 32; height = 32; game.addVisual(self);
+		}
+	}
+	class VerticalBar inherits _DebugObject {
+		var property image = 'debug/verticalBar-red.png'
+		const property variant = new Dictionary()
+		method initialize() {
+			thickness = 4; height = 500; game.addVisual(self);
+			
+			variant.put('red', 'debug/verticalBar-red.png')
+			variant.put('dotted', 'debug/vertical-bardotted-orange.png')
+			variant.put('dotted2', 'debug/verticalDotted2x256.png')
+		}
+		
+		method variant(_variant) {
+			image = variant.get(_variant)
+		}
+	}
+	
+	class HorizontalBar inherits _DebugObject {
+		var property image = 'debug/horizontalBar-green.png'
+		method initialize() {
+			thickness = 500; height = 4; game.addVisual(self);
+		}
+	}
+	
+	class RotatedBar inherits _DebugObject {
+		var property image = 'debug/45degDotted.png'
+		method initialize() {
+			thickness = 1176; height = 1176; game.addVisual(self);
+		}
+	}
+	
+	class Pixel inherits _DebugObject {
+		var property image = 'debug/PixelPerfect.png'
+		method initialize() {
+			thickness = 168; height = 168; game.addVisual(self);
+		}
+	}
 }
