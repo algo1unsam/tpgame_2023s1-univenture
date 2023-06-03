@@ -1,13 +1,10 @@
 import wollok.game.*
-import topos.*
-import config.*
 
 program juego {
 	game.title("Juego Base")
-	game.width(40)
- 	game.height(30)
-  	game.cellSize(30)
-  	game.boardGround("back_30.png")
-	game.addVisual(topo1)
+	game.width(7)
+ 	game.height(4)
+  	game.cellSize(168)
+  	
 	game.start()
 }
