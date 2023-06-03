@@ -1,10 +1,92 @@
 import wollok.game.*
+import menu.Menu
+import topos.topos
+import clases.*
 
 program juego {
 	game.title("Juego Base")
 	game.width(7)
  	game.height(4)
   	game.cellSize(168)
-  	
+
+	const menu = new Menu(items = [
+	['empezar', 'botones/play#.png'],
+	['creditos', 'botones/creditos#.png'],
+	['salir', 'botones/creditos#.png']
+	])
+	
+//	menu.visualizar()
+	
+//	keyboard.a().onPressDo({menu.moverIzquierda()})
+//	keyboard.d().onPressDo({menu.moverDerecha()})
+//	
+//	keyboard.space().onPressDo({
+//		if (menu.indice() == 'empezar') {
+//			menu.romper()
+//		}
+//	})
+	
+
+	const conjuntoHuecos = #{};
+//	const listaTopos = [];
+//	const listaLetras = [];
+
+	
+	
+	//var conjuntoHuecosLibes = conjuntoHuecos.difference(huecosConTopos);
+
+//	const generarTopo = {
+//		var conjuntoHuecosLibres = conjuntoHuecos.difference(huecosConTopos);
+//		const posicion = conjuntoHuecosLibres.anyOne().position()
+//		
+//		
+//	}
+	
+		
+	const generarPosiciones = {
+		var _conjunto = #{}
+		
+		(0..(game.width()-1)).forEach({x =>
+			// -2 por el score arriba.
+			(0..(game.height()-2)).forEach({y => _conjunto.add(game.at(x,y))})
+		})
+		
+		return _conjunto;
+	}
+	
+	// esto pasa cada vez que generas algo nuevo.
+	var conjuntoPosiciones =  generarPosiciones.apply();
+	
+	const generarHueco = {
+		var _hueco;
+		const posicionRandom = conjuntoPosiciones.anyOne();
+		conjuntoPosiciones.remove(posicionRandom)
+		
+		_hueco = new Hueco(position=posicionRandom)
+		return _hueco;
+	}
+	
+	
+	keyboard.q().onPressDo({
+		const huecoGenerado = generarHueco.apply()
+		game.addVisual(huecoGenerado)
+		conjuntoHuecos.add(huecoGenerado)
+	})
+	
+	keyboard.e().onPressDo({
+		var huecosConTopos = conjuntoHuecos.filter({hueco =>
+			game.getObjectsIn(hueco.position()).any({objeto => objeto.esTopo()})
+		})
+		
+		var conjuntoHuecosLibres = conjuntoHuecos.difference(huecosConTopos);
+		const posicion = conjuntoHuecosLibres.asList().anyOne().position();
+		
+		topos.crearTopo('tipo',posicion)
+	})
+	
+	
+	
+	
+	
 	game.start()
 }
