@@ -16,8 +16,10 @@ describe "Logica de juego." {
 
 describe "Logica de topos" {
 
-	/*Topos consta
-	 * 
+	/*Topos consta de una clase padre con metodos que definen a la misma 
+	 * y 5 clases que heredan los principales metodos
+	 * y atributos, modificando el puntaje o la logica de calculo del mismo.
+	 * El objeto topo es que interactua con los otros archivos creando nuevos topos.
 	 */
 //Se instancia 5 tipos de topo.
 	const pepa = new TopoNormal(puntaje = 100, tiempoDeVidaMaximo = 5, position = game.at(0, 0), image = 'explosion/frame0.png')
@@ -35,9 +37,37 @@ describe "Logica de topos" {
 		assert.equals(200, pepi.puntaje())
 		// El puntaje de pepo es 250.
 		assert.equals(250, pepo.puntaje())
-		// El puntaje de pepu es 300.
-		assert.equals(100, pepu.puntaje())
 	}
+
+	test "TEST DE VISUALES" {
+		/*Los objetos instanciado por Topo posen un metodo inicializador 
+		 * que los dibuja y les asigna una letra.
+		 */
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepa))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepe))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepi))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepo))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepu))
+	}
+
+	test "TEST POSICION DE UN TOPO" {
+		// La posicion de pepa es el par ordenado (0,0).
+		assert.equals(game.at(0, 0), pepa.position())
+		// La posicion de pepe es el par ordenado (0,1).
+		assert.equals(game.at(0, 1), pepe.position())
+		// La posicion de pepi es el par ordenado (1,1).
+		assert.equals(game.at(1, 1), pepi.position())
+		// La posicion de pepo es el par ordenado (2,1).
+		assert.equals(game.at(2, 1), pepo.position())
+		// La posicion de pepu es el par ordenado (2,2).
+		assert.equals(game.at(2, 2), pepu.position())
+	}
+
 //
 //	test "TEST TIEMPO DE VIDA MAXIMA DE UN TOPO" {
 //		// El puntaje de pepa es 5.
@@ -48,10 +78,7 @@ describe "Logica de topos" {
 //		assert.equals(15, pepi._tiempoDeVidaMaximo())
 //		// El puntaje de pepo es 20.
 //		assert.equals(20, pepo._tiempoDeVidaMaximo())
-//		// El puntaje de pepu es 25.
-//		assert.equals(25, pepu._tiempoDeVidaMaximo())
 //	}
-
 	test "TEST IDENTIDAD DE UN TOPO" {
 		// La identida de pepa como "esTopo" es true.
 		assert.equals(true, pepa.esTopo())
@@ -75,6 +102,49 @@ describe "Logica de topos" {
 		assert.equals(false, pepo.esLetra())
 		// La identida de pepu como "esLetra" es false.
 		assert.equals(false, pepu.esLetra())
+	}
+
+	test "TEST REMOVER(MATAR) TOPO DEL BOARD" {
+		// Remueve pepa del board usando matar().
+		pepa.matar()
+		// Remueve pepe del board usando matar().
+		pepe.matar()
+		// Remueve pepi del board usando matar().
+		pepi.matar()
+		// Remueve pepo del board usando matar().
+		pepo.matar()
+		// Remueve pepu del board usando matar().
+		pepu.matar()
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(false, game.hasVisual(pepa))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(false, game.hasVisual(pepe))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(false, game.hasVisual(pepi))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(false, game.hasVisual(pepo))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(false, game.hasVisual(pepu))
+	}
+
+	test "TEST LOGICA TOPOTIEMPO" {
+		// El puntaje de pepu es 100.
+		assert.equals(100, pepu.puntaje())
+		// Modificando solo el tiempoDeVida a 10.
+		const pepu_10_de_vida = new TopoTiempo(tiempoDeVida = 10, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
+		assert.equals(10, pepu_10_de_vida.puntaje())
+		// Modificando solo el puntajeBase a 1000.
+		const pepu_1000_de_puntaje_base = new TopoTiempo(puntajeBase = 1000, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
+		assert.equals(1000, pepu_1000_de_puntaje_base.puntaje())
+		// Modificando el puntajeBase a 1000 y el tiempoDeVida a 5.
+		const pepu_1000_y_5_valores = new TopoTiempo(puntajeBase = 1000, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
+		assert.equals(1000, pepu_1000_y_5_valores.puntaje())
+	}
+
+	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
+	// Crear el topo PAPUCHO, del tipo normal cuyo puntaje es 100.
+	// Verificar el puntaje de PAPUCHO.
+	// Verfificar posicion de papucho.
 	}
 
 }
