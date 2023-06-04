@@ -6,7 +6,7 @@ import letras.letras
 import mapeoTeclas.*
 
 object juego {
-	var listaTipos = ['normal','aire','fuego','tierra', 'tiempo'];
+	var listaTiposDeTopo = ['normal','aire','fuego','tierra', 'tiempo'];
 	var conjuntoPosiciones = #{};
 	const conjuntoHuecos = #{};
 	//	const listaTopos = [];
@@ -14,15 +14,14 @@ object juego {
 	
 	method initialize() {
 		const letra = letras.letrasDic().get('g');
-		if(game.hasVisual(letra)) {
-			letra.matar()}
+		if(game.hasVisual(letra)) {letra.matar()}
 			
-	const bloqueLetra = { caracterLetra =>
-		const letra = letras.letrasDic().get(caracterLetra)
-		if (game.hasVisual(letra)) {
-			letra.matar()
+		const bloqueLetra = { caracterLetra =>
+			const letra = letras.letrasDic().get(caracterLetra)
+			if (game.hasVisual(letra)) {
+				letra.matar()
+			}
 		}
-	}
 	
 		letras.abecedario().forEach({letra =>
 			mapeoTeclas.mapearTecla(letra, {bloqueLetra.apply(letra)})
@@ -69,8 +68,75 @@ object juego {
 	
 	method generarTopo() {
 		const huecoLibre = self.huecoLibre()
-		conjuntoHuecos.remove(huecoLibre)
+//		conjuntoHuecos.remove(huecoLibre)
 		topos.crearTopo('', huecoLibre.position())
 	}
 	
+	method generarTopo(hueco) {
+		topos.crearTopo('', hueco.position())
+	}
+	
+	method iniciar() {
+		game.addVisual(variablesDeJuego)
+		variablesDeJuego.tiempo(10)
+		game.onTick(1000, 'tick general del juego', {
+			if (variablesDeJuego.tiempo() <= 0) {
+				self.terminar()
+			}
+			
+			variablesDeJuego.decrementarTiempo()
+			const huecosASpawnear = self.huecosLibres().filter({hueco => hueco.disponible()})
+			if (huecosASpawnear.size() > 0) {
+				huecosASpawnear.forEach({hueco => self.generarTopo(hueco)})
+			}
+			
+		})
+	}
+	
+	method terminar() {
+		game.removeVisual(variablesDeJuego)
+		game.removeTickEvent('tick general del juego');
+		conjuntoHuecos.forEach({hueco =>
+			game.getObjectsIn(hueco.position()).forEach({obj => obj.borrar()})
+		})
+		conjuntoHuecos.clear()
+		self._generarPosiciones()
+	}
+}
+
+object variablesDeJuego {
+	var tiempo;
+	var puntaje = 0;
+	
+	var texto = '';
+	
+    method textColor() = "FFFFFFFF";
+    method text() = texto;
+    method position() = game.at(0, game.height() - 1)
+    
+    method actualizarTablero() {
+    	texto = "\tTiempo: " + tiempo + "\n\tPuntaje: " + puntaje;
+    }
+    
+    method decrementarTiempo() {
+    	tiempo = tiempo - 1
+    	self.actualizarTablero()
+    }
+    
+    method tiempo(_tiempo) {
+    	tiempo = _tiempo;
+    	self.actualizarTablero()
+    }
+    
+    method tiempo() = tiempo;
+    
+    method sumarPuntaje(_puntaje) {
+    	puntaje = puntaje + _puntaje;
+    	self.actualizarTablero()
+    }
+    
+    method sumarTiempo(_tiempo) {
+    	tiempo = tiempo + _tiempo;
+    	self.actualizarTablero()
+    }
 }

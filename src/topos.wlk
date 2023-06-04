@@ -1,5 +1,6 @@
 import wollok.game.game
 import letras.*
+import juego.variablesDeJuego
 
 object topos {
 //	/** topos en orden ascendente por difucultad */
@@ -20,6 +21,7 @@ package tiposDeTopos {
 		var property image;
 		var property position;
 		var puntaje = 5;
+		var bonusTiempo = 0;
 		const tiempoDeVidaMaximo;
 		var letraRandom = '';
 		
@@ -35,12 +37,19 @@ package tiposDeTopos {
 		
 		method matar() {
 			// animación de matar.
-			game.removeVisual(self)
-			game.removeTickEvent('topoMaxVida ' + self.identity())
+			self.borrar()
+			variablesDeJuego.sumarPuntaje(puntaje)
+			variablesDeJuego.sumarTiempo(bonusTiempo)
 			return puntaje;
 		}
 		
+		method borrar() {
+			game.removeVisual(self)
+			game.removeTickEvent('topoMaxVida ' + self.identity())
+		}
+		
 		method puntaje() = puntaje;
+		method bonusTiempo() = bonusTiempo;
 		
 		method esTopo() = true;
 		method esLetra() = false;
@@ -57,7 +66,11 @@ package tiposDeTopos {
 		override method initialize() { super() }
 	}
 	class TopoTierra inherits Topo {
-		override method initialize() { super() }
+		
+		override method initialize() {
+			bonusTiempo = 10;
+			super()
+		}
 	}
 	class TopoTiempo inherits Topo {
 		const puntajeBase = 100;

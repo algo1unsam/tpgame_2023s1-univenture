@@ -24,8 +24,6 @@ object mapeoTeclas {
 			key.onPressDo({acciones.get(caracter).apply()})
 		})
 	}
-//		acciones.put('a',{});
-//		keyboard.a().onPressDo({acciones.get('a').apply()});
 	
 	/** Limpia todos los mapeos globales de las teclas del contexto. */
 	method limpiar() {

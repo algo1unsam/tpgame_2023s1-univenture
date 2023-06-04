@@ -28,31 +28,6 @@ program juego {
 //		}
 //	})
 
-//	mapeoTeclas.mapearTecla('a',{
-//		const letra = letras.letrasDic().get('a');
-//		console.println('esta la A '+letra.letra())
-//		if(game.hasVisual(letra)) {
-//			console.println('esta la a '+letra)
-//			letra.matar()
-//		}
-//	})
-//	mapeoTeclas.mapearTecla('z',{
-//		const letra = letras.letrasDic().get('z');
-//		console.println('esta la Z '+letra.letra())
-//		if(game.hasVisual(letra)) {
-//			console.println('esta la z '+letra)
-//			letra.matar()
-//		}
-//	})
-//	mapeoTeclas.mapearTecla('g',{
-//		const letra = letras.letrasDic().get('g');
-//		console.println('esta la G '+letra.letra())
-//		if(game.hasVisual(letra)) {
-//			console.println('esta la G '+letra)
-//			letra.matar()
-//		}
-//	})
-	
 //	[topo, topo1, topo2, null, null]
 //	
 //	100
@@ -99,17 +74,23 @@ program juego {
 //	
 //	desde juego:
 //	listaHuecosDisponibles = #{}
-//	
-//	
-//	
+
 	juego._generarPosiciones()
 	
 	keyboard.enter().onPressDo({
 		juego._generarHueco()
 	})
 	
+//	keyboard.space().onPressDo({
+//		juego.generarTopo()
+//	})
+	
 	keyboard.space().onPressDo({
-		juego.generarTopo()
+		juego.iniciar()
+	})
+	
+	keyboard.shift().onPressDo({
+		juego.terminar()
 	})
 	
 	game.start()
