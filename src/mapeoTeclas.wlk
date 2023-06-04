@@ -4,26 +4,28 @@ el codigo en otros ambientes. */
 object mapeoTeclas {
 //	const keys = new Dictionary();
 	const acciones = new Dictionary();
+	const abecedarioObjetos = [
+		['a',keyboard.a()],['b',keyboard.b()],['c',keyboard.c()],['d',keyboard.d()],
+		['e',keyboard.e()],['f',keyboard.f()],['g',keyboard.g()],['h',keyboard.h()],
+		['i',keyboard.i()],['j',keyboard.j()],['k',keyboard.k()],['l',keyboard.l()],
+		['m',keyboard.m()],['n',keyboard.n()],['o',keyboard.o()],['p',keyboard.p()],
+		['q',keyboard.q()],['r',keyboard.r()],['s',keyboard.s()],['t',keyboard.t()],
+		['u',keyboard.u()],['v',keyboard.v()],['w',keyboard.w()],['x',keyboard.x()],
+		['y',keyboard.y()],['z',keyboard.z()]
+	]
 	
 	/** Contexto de todas las las keys. */
 	method initialize() {
-		acciones.put('a',{});
-		keyboard.a().onPressDo({acciones.get('a').apply()});
-		acciones.put('d',{});
-		keyboard.d().onPressDo({acciones.get('d').apply()});
-		acciones.put('q',{});
-		keyboard.q().onPressDo({acciones.get('q').apply()});
-		acciones.put('e',{});
-		keyboard.e().onPressDo({acciones.get('e').apply()});
-		acciones.put('r',{});
-		keyboard.r().onPressDo({acciones.get('r').apply()});
-		acciones.put('x',{});
-		keyboard.x().onPressDo({acciones.get('x').apply()});
-		acciones.put('f',{});
-		keyboard.f().onPressDo({acciones.get('f').apply()});
-		acciones.put('g',{});
-		keyboard.g().onPressDo({acciones.get('g').apply()});
+		abecedarioObjetos.forEach({tupla =>
+			const caracter = tupla.get(0)
+			const key = tupla.get(1)
+			
+			acciones.put(caracter, {})	
+			key.onPressDo({acciones.get(caracter).apply()})
+		})
 	}
+//		acciones.put('a',{});
+//		keyboard.a().onPressDo({acciones.get('a').apply()});
 	
 	/** Limpia todos los mapeos globales de las teclas del contexto. */
 	method limpiar() {

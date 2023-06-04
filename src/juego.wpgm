@@ -2,6 +2,9 @@ import wollok.game.*
 import menu.Menu
 import topos.topos
 import clases.*
+import juego.*
+import letras.letras
+import mapeoTeclas.*
 
 program juego {
 	game.title("Juego Base")
@@ -16,7 +19,6 @@ program juego {
 	])
 	
 //	menu.visualizar()
-	
 //	keyboard.a().onPressDo({menu.moverIzquierda()})
 //	keyboard.d().onPressDo({menu.moverDerecha()})
 //	
@@ -25,68 +27,41 @@ program juego {
 //			menu.romper()
 //		}
 //	})
-	
 
-	const conjuntoHuecos = #{};
-//	const listaTopos = [];
-//	const listaLetras = [];
-
+//	mapeoTeclas.mapearTecla('a',{
+//		const letra = letras.letrasDic().get('a');
+//		console.println('esta la A '+letra.letra())
+//		if(game.hasVisual(letra)) {
+//			console.println('esta la a '+letra)
+//			letra.matar()
+//		}
+//	})
+//	mapeoTeclas.mapearTecla('z',{
+//		const letra = letras.letrasDic().get('z');
+//		console.println('esta la Z '+letra.letra())
+//		if(game.hasVisual(letra)) {
+//			console.println('esta la z '+letra)
+//			letra.matar()
+//		}
+//	})
+//	mapeoTeclas.mapearTecla('g',{
+//		const letra = letras.letrasDic().get('g');
+//		console.println('esta la G '+letra.letra())
+//		if(game.hasVisual(letra)) {
+//			console.println('esta la G '+letra)
+//			letra.matar()
+//		}
+//	})
 	
+	juego._generarPosiciones()
 	
-	//var conjuntoHuecosLibes = conjuntoHuecos.difference(huecosConTopos);
-
-//	const generarTopo = {
-//		var conjuntoHuecosLibres = conjuntoHuecos.difference(huecosConTopos);
-//		const posicion = conjuntoHuecosLibres.anyOne().position()
-//		
-//		
-//	}
-	
-		
-	const generarPosiciones = {
-		var _conjunto = #{}
-		
-		(0..(game.width()-1)).forEach({x =>
-			// -2 por el score arriba.
-			(0..(game.height()-2)).forEach({y => _conjunto.add(game.at(x,y))})
-		})
-		
-		return _conjunto;
-	}
-	
-	// esto pasa cada vez que generas algo nuevo.
-	var conjuntoPosiciones =  generarPosiciones.apply();
-	
-	const generarHueco = {
-		var _hueco;
-		const posicionRandom = conjuntoPosiciones.anyOne();
-		conjuntoPosiciones.remove(posicionRandom)
-		
-		_hueco = new Hueco(position=posicionRandom)
-		return _hueco;
-	}
-	
-	
-	keyboard.q().onPressDo({
-		const huecoGenerado = generarHueco.apply()
-		game.addVisual(huecoGenerado)
-		conjuntoHuecos.add(huecoGenerado)
+	keyboard.enter().onPressDo({
+		juego._generarHueco()
 	})
 	
-	keyboard.e().onPressDo({
-		var huecosConTopos = conjuntoHuecos.filter({hueco =>
-			game.getObjectsIn(hueco.position()).any({objeto => objeto.esTopo()})
-		})
-		
-		var conjuntoHuecosLibres = conjuntoHuecos.difference(huecosConTopos);
-		const posicion = conjuntoHuecosLibres.asList().anyOne().position();
-		
-		topos.crearTopo('tipo',posicion)
+	keyboard.space().onPressDo({
+		juego.generarTopo()
 	})
-	
-	
-	
-	
 	
 	game.start()
 }
