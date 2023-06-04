@@ -18,7 +18,7 @@ package tiposDeTopos {
 		var property position;
 		var puntaje = 5;
 		const tiempoDeVidaMaximo;
-		var letraRandom;
+		var letraRandom = '';
 		
 		method initialize() {
 			game.addVisual(self);

@@ -53,6 +53,55 @@ program juego {
 //		}
 //	})
 	
+//	[topo, topo1, topo2, null, null]
+//	
+//	100
+//	
+//	i = 1000
+//	
+//	listatopos = []
+//	listaTiempos = []
+//	(0..1000).forEach({_=>
+//		i = i + inrandom (1..2000) new Range(start=100, end=2000, step=50)
+//		listaTiempos.add(i)
+//	})
+//	
+//	
+//	i=0;
+//	ontick(500,'ontick ' + i) {
+//		i++;
+//		intenta spawnear topo;
+//		onTick(tiemporandom, 'ontick ' + i)
+//		removeTickEvent('ontick ' + i - 1)
+//	}
+//	
+//	ontick(50000) {
+//		try {
+//			removeTickEvent('ontick ' + i-1)
+//			removeTickEvent('ontick ' + i)
+//			removeTickEvent('ontick ' + i+1)
+//			
+//		} catch : e {}
+//	}
+//	
+//
+//	hueco:
+//	intentarSpawnearTopo = 
+//	game.onTick((0...5000).anyOne(), 'desdeHueco ' + self.identity(), {
+//		spawnear
+//		game.removeTickEvent('desdeHueco ' + hueco.identity())
+//	})
+//	
+//	
+//	desde juego:
+//	#{huecos}.forEach({hueco => game.removeTickEvent('desdeHueco ' + hueco.identity())})
+//	
+//	
+//	desde juego:
+//	listaHuecosDisponibles = #{}
+//	
+//	
+//	
 	juego._generarPosiciones()
 	
 	keyboard.enter().onPressDo({
