@@ -2,6 +2,8 @@ import wollok.game.game
 import letras.*
 
 object topos {
+//	/** topos en orden ascendente por difucultad */
+//	const tiposDeTopos = ['normal', 'aire', 'bomba', 'fuego']
 	method matar(topo) {
 		
 	}
@@ -9,6 +11,7 @@ object topos {
 	/** Crea un topo a partir de un tipo en string */
 	method crearTopo(tipo, pos) {
 		// logica de segun el tipo devuelve un topo.
+		const nuevoTopo = new tiposDeTopos.TopoNormal(image='explosion/frame0.png', position=pos, tiempoDeVidaMaximo=5000)
 	}
 }
 
@@ -68,8 +71,9 @@ package tiposDeTopos {
 		override method puntaje() = (puntajeBase/tiempoDeVida).truncate(0);
 		
 		override method matar() {
-			super()
+			super();
 			game.removeTickEvent('topo suma tiempo: ' + self.identity());
+			return puntaje;
 		}
 	}
 }

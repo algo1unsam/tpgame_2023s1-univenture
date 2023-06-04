@@ -65,16 +65,12 @@ object juego {
 		return conjuntoHuecos.difference(huecosConTopos);
 	}
 	
-	method huecoLibre() = self.huecosLibres().asList().anyOne().position()
+	method huecoLibre() = self.huecosLibres().asList().anyOne()
 	
 	method generarTopo() {
 		const huecoLibre = self.huecoLibre()
 		conjuntoHuecos.remove(huecoLibre)
-	
-		const nuevoTopo = new TopoNormal(image='explosion/frame0.png', position=huecoLibre, tiempoDeVidaMaximo=5000)
-		
-		
-		
+		topos.crearTopo('', huecoLibre.position())
 	}
 	
 }
