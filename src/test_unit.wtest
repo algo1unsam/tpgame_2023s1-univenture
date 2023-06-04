@@ -7,10 +7,17 @@ import mapeoTeclas.*
 import niveles.*
 import menu.*
 
-describe "Logica de juego." {
+describe "Logica de clases." {
 
-/*Juego consta
- * 
+/*Clases consta de 3 clases que base, que contienen los atributos
+ * de los objetos como hueco,letra y explosion.
+ */
+}
+
+describe "Logica de letras." {
+
+/*Letras consta de un objeto letras que se encarga de controlar el trafico
+ * de letras generadas, verificando que no haya repetidas.
  */
 }
 
@@ -149,20 +156,6 @@ describe "Logica de topos" {
 
 }
 
-describe "Logica de clases." {
-
-/*Clases consta
- * 
- */
-}
-
-describe "Logica de letras." {
-
-/*Letras consta
- * 
- */
-}
-
 describe "Logica del mapeo de letras." {
 
 /*mapeo de teclas consta
@@ -181,6 +174,14 @@ describe "Logica del la eleccion de niveles" {
 
 /*Niveles consta
  * 
+ */
+}
+
+describe "Logica de juego." {
+
+/*Juego contiene la logica principal del juego,desde la eleccion del topo hasta su
+ * generacion en un hueco,el cual tambien es de asignacion aletoria,
+ * esto incluye la letra y la asignacion de la misma.
  */
 }
 
