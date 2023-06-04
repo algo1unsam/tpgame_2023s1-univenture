@@ -1,35 +1,116 @@
+import wollok.game.*
 import juego.*
+import topos.tiposDeTopos.*
 import clases.*
 import letras.*
 import mapeoTeclas.*
 import niveles.*
 import menu.*
 
-describe "Logica de topos" {
+describe "Logica de juego." {
 
+/*Juego consta
+ * 
+ */
 }
 
-describe "Logica de juego." {
+describe "Logica de topos" {
+
+	/*Topos consta
+	 * 
+	 */
+//Se instancia 5 tipos de topo.
+	const pepa = new TopoNormal(puntaje = 100, tiempoDeVidaMaximo = 5, position = game.at(0, 0), image = 'explosion/frame0.png')
+	const pepe = new TopoAgua(puntaje = 150, tiempoDeVidaMaximo = 10, position = game.at(0, 1), image = 'explosion/frame0.png')
+	const pepi = new TopoFuego(puntaje = 200, tiempoDeVidaMaximo = 15, position = game.at(1, 1), image = 'explosion/frame0.png')
+	const pepo = new TopoTierra(puntaje = 250, tiempoDeVidaMaximo = 20, position = game.at(2, 1), image = 'explosion/frame0.png')
+	const pepu = new TopoTiempo(tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
+
+	test "TEST PUNTAJE PROPIOS DE UN TOPO" {
+		// El puntaje de pepa es 100.
+		assert.equals(100, pepa.puntaje())
+		// El puntaje de pepe es 150.
+		assert.equals(150, pepe.puntaje())
+		// El puntaje de pepi es 200.
+		assert.equals(200, pepi.puntaje())
+		// El puntaje de pepo es 250.
+		assert.equals(250, pepo.puntaje())
+		// El puntaje de pepu es 300.
+		assert.equals(100, pepu.puntaje())
+	}
+//
+//	test "TEST TIEMPO DE VIDA MAXIMA DE UN TOPO" {
+//		// El puntaje de pepa es 5.
+//		assert.equals(5, pepa._tiempoDeVidaMaximo())
+//		// El puntaje de pepe es 10.
+//		assert.equals(10, pepe._tiempoDeVidaMaximo())
+//		// El puntaje de pepi es 15.
+//		assert.equals(15, pepi._tiempoDeVidaMaximo())
+//		// El puntaje de pepo es 20.
+//		assert.equals(20, pepo._tiempoDeVidaMaximo())
+//		// El puntaje de pepu es 25.
+//		assert.equals(25, pepu._tiempoDeVidaMaximo())
+//	}
+
+	test "TEST IDENTIDAD DE UN TOPO" {
+		// La identida de pepa como "esTopo" es true.
+		assert.equals(true, pepa.esTopo())
+		// La identida de pepe como "esTopo" es true.
+		assert.equals(true, pepe.esTopo())
+		// La identida de pepi como "esTopo" es true.
+		assert.equals(true, pepi.esTopo())
+		// La identida de pepo como "esTopo" es true.
+		assert.equals(true, pepo.esTopo())
+		// La identida de pepu como "esTopo" es true.
+		assert.equals(true, pepu.esTopo())
+		// La identida de pepa como "esLetra" es false.
+		assert.equals(false, pepa.esLetra())
+		// La identida de pepe como "esLetra" es false.
+		assert.equals(false, pepe.esLetra())
+		// La identida de pepi como "esLetra" es false.
+		assert.equals(false, pepi.esLetra())
+		// La identida de pepi como "esLetra" es false.
+		assert.equals(false, pepi.esLetra())
+		// La identida de pepu como "esLetra" es false.
+		assert.equals(false, pepo.esLetra())
+		// La identida de pepu como "esLetra" es false.
+		assert.equals(false, pepu.esLetra())
+	}
 
 }
 
 describe "Logica de clases." {
 
+/*Clases consta
+ * 
+ */
 }
 
 describe "Logica de letras." {
 
+/*Letras consta
+ * 
+ */
 }
 
 describe "Logica del mapeo de letras." {
 
+/*mapeo de teclas consta
+ * 
+ */
 }
 
 describe "Logica del menu." {
 
+/*Menu consta
+ * 
+ */
 }
 
 describe "Logica del la eleccion de niveles" {
 
+/*Niveles consta
+ * 
+ */
 }
 
