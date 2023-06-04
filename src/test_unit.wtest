@@ -1,0 +1,35 @@
+import juego.*
+import clases.*
+import letras.*
+import mapeoTeclas.*
+import niveles.*
+import menu.*
+
+describe "Logica de topos" {
+
+}
+
+describe "Logica de juego." {
+
+}
+
+describe "Logica de clases." {
+
+}
+
+describe "Logica de letras." {
+
+}
+
+describe "Logica del mapeo de letras." {
+
+}
+
+describe "Logica del menu." {
+
+}
+
+describe "Logica del la eleccion de niveles" {
+
+}
+
