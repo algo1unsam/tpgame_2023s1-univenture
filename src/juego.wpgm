@@ -9,20 +9,13 @@ import mapeoTeclas.*
 program juego {
 	game.title("Juego Base")
 	game.width(7)
- 	game.height(4)
-  	game.cellSize(168)
-  	game.boardGround('fondo.png')
-
-	const menu = new Menu(items = [
-		['jugar', 'menu/lapida_jugar.png','menu/lapida_desactivada.png'],
-		['guia', 'menu/lapida_guia.png','menu/lapida_desactivada.png'],
-		['salir', 'menu/lapida_salir.png','menu/lapida_desactivada.png']
-	])
+	game.height(4)
+	game.cellSize(168)
+	game.boardGround('fondo.png')
+	const menu = new Menu(items = [ ['jugar', 'menu/lapida_jugar.png','menu/lapida_desactivada.png'], ['guia', 'menu/lapida_guia.png','menu/lapida_desactivada.png'], ['salir', 'menu/lapida_salir.png','menu/lapida_desactivada.png'] ])
 	menu.iniciar()
-	
-	keyboard.space().onPressDo({
-		try{
-		if (menu.indice() == 'jugar'){
+	keyboard.space().onPressDo({ try {
+		if (menu.indice() == 'jugar') {
 			menu.limpiarMenu()
 			juego.iniciar()
 			juego._generarHueco()
@@ -30,26 +23,33 @@ program juego {
 			juego._generarHueco()
 			juego._generarHueco()
 			juego._generarHueco()
-		}	if(menu.indice() == 'guia'){
-				menu.limpiarMenu()
-				guia.iniciarGuia()
-			} if(menu.indice() == 'salir'){
-					game.stop()
-			}} catch e: Exception(return 'No se pudo seleccionar')
+		}
+		if (menu.indice() == 'guia') {
+			menu.limpiarMenu()
+			guia.iniciarGuia()
+		}
+		if (menu.indice() == 'salir') {
+			game.stop()
+		}
+	} catch e : Exception
+		(return 'No se pudo seleccionar')
 	})
-	
-	keyboard.backspace().onPressDo({
-		if (game.hasVisual(variablesDeJuego)){
+	keyboard.backspace().onPressDo({ 
+		if (game.hasVisual(variablesDeJuego)) {
 			juego.terminar()
-			game.allVisuals().forEach({visual => game.removeVisual(visual)})
+			game.allVisuals().forEach({ visual => game.removeVisual(visual)})
 			menu.iniciar()
-			}
+		}
+		if (game.hasVisual(end)) {
+			game.allVisuals().forEach({ visual => game.removeVisual(visual)})
+			menu.iniciar()
+		}
 		try {
 			game.removeVisual(guia)
 			menu.iniciar()
+		} catch e : wollok.lang.Exception {
+			return 'ya estas en el menu'
 		}
-		catch e: wollok.lang.Exception{return 'ya estas en el menu'}
-			
 	})
 	game.start()
 }

@@ -151,7 +151,7 @@ object guia {
 }
 
 object end {
-	
+	var _estado = false
 	var texto = 'Puntaje final fue: ';
 	const position = game.center()
 	
@@ -159,9 +159,11 @@ object end {
     method text() = texto;
     method position() = position
     method puntajeFinal(_puntaje){
+    	_estado = true
     	texto = texto + _puntaje
     	game.addVisual(self)
     }
+    method estadoFinal() = _estado
 }
 
 
