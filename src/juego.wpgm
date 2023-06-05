@@ -32,7 +32,6 @@ program juego {
 			} if(menu.indice() == 'salir'){
 					game.stop()
 			}} catch e: Exception(return 'No se pudo seleccionar')
-//		console.println(menu.indice())
 	})
 	
 	keyboard.backspace().onPressDo({
@@ -48,11 +47,6 @@ program juego {
 		catch e: wollok.lang.Exception{return 'ya estas en el menu'}
 			
 	})
-	
-//	keyboard.space().onPressDo({
-//		menu.salir()
-//		juego.iniciar()
-//	})
-	
+		
 	game.start()
 }
