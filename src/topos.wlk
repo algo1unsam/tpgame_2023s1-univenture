@@ -6,12 +6,6 @@ import wlklib.essentials
 import clases.Explosion
 
 object topos {
-//	/** topos en orden ascendente por difucultad */
-//	const tiposDeTopos = ['normal', 'aire', 'bomba', 'fuego']
-	method matar(topo) {
-		
-	}
-	
 	/** Crea un topo a partir de un tipo en string */
 	method crearTopo(tipo, pos) {
 		// logica de segun el tipo devuelve un topo.

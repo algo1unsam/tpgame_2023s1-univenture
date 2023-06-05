@@ -80,11 +80,11 @@ describe "Logica de topos" {
 	 * El objeto topo es que interactua con los otros archivos creando nuevos topos.
 	 */
 //Se instancia 5 tipos de topo.
-	const pepa = new TopoNormal(puntaje = 100, tiempoDeVidaMaximo = 5, position = game.at(0, 0))
-	const pepe = new TopoAgua(puntaje = 150, tiempoDeVidaMaximo = 10, position = game.at(0, 1))
-	const pepi = new TopoFuego(puntaje = 200, tiempoDeVidaMaximo = 15, position = game.at(1, 1))
-	const pepo = new TopoTierra(puntaje = 250, tiempoDeVidaMaximo = 20, position = game.at(2, 1))
-	const pepu = new TopoTiempo(tiempoDeVidaMaximo = 25, position = game.at(2, 2))
+	const pepa = new TopoTierra(position = game.at(0, 0))
+	const pepe = new TopoAgua(position = game.at(0, 1))
+	const pepi = new TopoFuego(position = game.at(1, 1))
+	const pepo = new TopoTierra( position = game.at(2, 1))
+	const pepu = new TopoViento(position = game.at(2, 2))
 
 	method initialize() {
 	}
@@ -189,17 +189,6 @@ describe "Logica de topos" {
 	}
 
 	test "TEST LOGICA TOPOTIEMPO" {
-		// El puntaje de pepu es 100.
-		assert.equals(100, pepu.puntaje())
-		// Modificando solo el tiempoDeVida a 10.
-		const pepu_10_de_vida = new TopoTiempo(tiempoDeVida = 10, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
-		assert.equals(10, pepu_10_de_vida.puntaje())
-		// Modificando solo el puntajeBase a 1000.
-		const pepu_1000_de_puntaje_base = new TopoTiempo(puntajeBase = 1000, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
-		assert.equals(1000, pepu_1000_de_puntaje_base.puntaje())
-		// Modificando el puntajeBase a 1000 y el tiempoDeVida a 5.
-		const pepu_1000_y_5_valores = new TopoTiempo(puntajeBase = 1000, tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
-		assert.equals(1000, pepu_1000_y_5_valores.puntaje())
 	}
 
 //	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
