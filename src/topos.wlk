@@ -15,25 +15,31 @@ object topos {
 	/** Crea un topo a partir de un tipo en string */
 	method crearTopo(tipo, pos) {
 		// logica de segun el tipo devuelve un topo.
-		const topoElegido = ['fuego', 'normal'].anyOne()
+		const topoElegido = ['fuego', 'normal','agua','viento','bomba'].anyOne()
 		if (topoElegido == 'fuego') {
-			const nuevoTopo = new tiposDeTopos.TopoFuego(position=pos, tiempoDeVidaMaximo=2000)
+			const nuevoTopo = new tiposDeTopos.TopoFuego(position=pos)
 		} else if (topoElegido == 'normal'){
-			const nuevoTopo = new tiposDeTopos.TopoNormal(position=pos, tiempoDeVidaMaximo=5000)
+			const nuevoTopo = new tiposDeTopos.TopoTierra(position=pos)
+		}else if (topoElegido == 'agua'){
+			const nuevoTopo = new tiposDeTopos.TopoAgua(position=pos)
+		}else if (topoElegido == 'viento'){
+			const nuevoTopo = new tiposDeTopos.TopoViento(position=pos)
+		}else if (topoElegido == 'bomba'){
+			const nuevoTopo = new tiposDeTopos.TopoBomba(position=pos)
 		}
 	}
 }
 
 package tiposDeTopos {
 	class Topo {
-		var sprite = new Sprite(frames=10, path='topos/topo_normal/frame#.png')
+		var sprite = new Sprite(frames=7, path='topos/topo_tierra/frame#.png')
 		var property image = sprite.getFrame()
 		var property position;
-		var puntaje = 5;
+		var puntaje = 0;
 		var bonusTiempo = 0;
-		const tiempoDeVidaMaximo;
+		const tiempoDeVidaMaximo = 5000;
 		var letraRandom = '';
-		var velocidad = 20;
+		var velocidad = 10;
 		var loMatoElJugador=true;
 		var puntajeFinDeTiempo = 0;
 		
@@ -100,42 +106,47 @@ package tiposDeTopos {
 		method esLetra() = false;
 	}
 	
-	
-	class TopoNormal inherits Topo {
-		override method initialize() { super() }
-	}
 	class TopoAgua inherits Topo {
-		override method initialize() { super() }
+		override method initialize() {
+			sprite = new Sprite(frames=5, path='topos/topo_agua/frame#.png')
+			puntaje = 50
+			velocidad = 5
+			super()
+		}
 	}
 	class TopoFuego inherits Topo {
 		override method initialize() { 
 			sprite = new Sprite(frames=5, path='topos/topo_fuego/frame#.png')
-			velocidad = 10
+			velocidad = 30
+			puntaje = 50
+			bonusTiempo = -2
 			super()
 		}
 	}
 	class TopoTierra inherits Topo {
 		
 		override method initialize() {
-			bonusTiempo = 10;
+			puntaje = 5
 			super()
 		}
 	}
-	class TopoTiempo inherits Topo {
-		const puntajeBase = 100;
-		var tiempoDeVida = 1;
-		
+	class TopoViento inherits Topo {
 		override method initialize() {
+			sprite = new Sprite(frames=10, path='topos/topo_normal/frame#.png')
+			bonusTiempo = 2
+			velocidad = 7
 			super()
-			game.onTick(1000, 'topo suma tiempo: ' + self.identity(), {tiempoDeVida = tiempoDeVida + 1})
 		}
-		
-		override method puntaje() = (puntajeBase/tiempoDeVida).truncate(0);
-		
-		override method matar() {
-			super();
-			game.removeTickEvent('topo suma tiempo: ' + self.identity());
-			return puntaje;
+
+	}
+		class TopoBomba inherits Topo {
+		override method initialize() {
+			sprite = new Sprite(frames=5, path='topos/topo_bomba/frame#.png')
+			puntaje = -100
+			bonusTiempo = -10
+			velocidad = 10
+			super()
 		}
+
 	}
 }
