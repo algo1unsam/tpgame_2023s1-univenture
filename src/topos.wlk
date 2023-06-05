@@ -35,7 +35,7 @@ package tiposDeTopos {
 		var property position;
 		var puntaje = 0;
 		var bonusTiempo = 0;
-		const tiempoDeVidaMaximo = 5000;
+		var tiempoDeVidaMaximo = 5000;
 		var letraRandom = '';
 		var velocidad = 10;
 		var loMatoElJugador = true;
@@ -92,11 +92,22 @@ package tiposDeTopos {
 		method esLetra() = false;
 	}
 
+
+	class TopoTierra inherits Topo {
+
+		override method initialize() {
+			puntaje = 5
+			super()
+		}
+
+	}
 	class TopoAgua inherits Topo {
 
 		override method initialize() {
 			sprite = new Sprite(frames = 5, path = 'topos/topo_agua/frame#.png')
+			tiempoDeVidaMaximo = 2500
 			puntaje = 50
+			
 			velocidad = 5
 			super()
 		}
@@ -108,17 +119,9 @@ package tiposDeTopos {
 		override method initialize() {
 			sprite = new Sprite(frames = 5, path = 'topos/topo_fuego/frame#.png')
 			velocidad = 30
+			tiempoDeVidaMaximo = 6000
 			puntaje = 50
 			bonusTiempo = -2
-			super()
-		}
-
-	}
-
-	class TopoTierra inherits Topo {
-
-		override method initialize() {
-			puntaje = 5
 			super()
 		}
 
@@ -129,6 +132,7 @@ package tiposDeTopos {
 		override method initialize() {
 			sprite = new Sprite(frames = 10, path = 'topos/topo_normal/frame#.png')
 			bonusTiempo = 2
+			tiempoDeVidaMaximo = 1000
 			velocidad = 7
 			super()
 		}
@@ -142,6 +146,7 @@ package tiposDeTopos {
 			puntaje = -100
 			bonusTiempo = -10
 			velocidad = 10
+			tiempoDeVidaMaximo = 3000
 			super()
 		}
 
