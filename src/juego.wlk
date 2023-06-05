@@ -108,13 +108,13 @@ object variablesDeJuego {
 	var puntaje = 0;
 	
 	var texto = '';
-	
-    method textColor() = "FFFFFFFF";
+						
+    method textColor() = "3E403ECC";
     method text() = texto;
-    method position() = game.at(0, game.height() - 1)
+    method position() = game.at(3, game.height() - 1)
     
     method actualizarTablero() {
-    	texto = "\tTiempo: " + tiempo + "\n\tPuntaje: " + puntaje;
+    	texto = "\tTIEMPO: " + tiempo + "\n\tPUNTAJE: " + puntaje;
     }
     
     method decrementarTiempo() {
@@ -152,10 +152,10 @@ object guia {
 
 object end {
 	var _estado = false
-	var texto = 'Puntaje final fue: ';
+	var texto = 'SCORE: ';
 	const position = game.center()
 	
-    method textColor() = "FFFFFFFF";
+    method textColor() = "3E403ECC";
     method text() = texto;
     method position() = position
     method puntajeFinal(_puntaje){
