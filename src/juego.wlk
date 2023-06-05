@@ -6,11 +6,8 @@ import letras.letras
 import mapeoTeclas.*
 
 object juego {
-	var listaTiposDeTopo = ['normal','aire','fuego','tierra', 'tiempo'];
 	var conjuntoPosiciones = #{};
 	const conjuntoHuecos = #{};
-	//	const listaTopos = [];
-	//	const listaLetras = [];
 	
 	method initialize() {		
 		
