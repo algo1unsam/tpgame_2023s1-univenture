@@ -6,6 +6,7 @@ import letras.*
 import mapeoTeclas.*
 import niveles.*
 import menu.*
+import wlklib.*
 
 describe "Logica de clases." {
 
@@ -79,11 +80,37 @@ describe "Logica de topos" {
 	 * El objeto topo es que interactua con los otros archivos creando nuevos topos.
 	 */
 //Se instancia 5 tipos de topo.
-	const pepa = new TopoNormal(puntaje = 100, tiempoDeVidaMaximo = 5, position = game.at(0, 0), image = 'explosion/frame0.png')
-	const pepe = new TopoAgua(puntaje = 150, tiempoDeVidaMaximo = 10, position = game.at(0, 1), image = 'explosion/frame0.png')
-	const pepi = new TopoFuego(puntaje = 200, tiempoDeVidaMaximo = 15, position = game.at(1, 1), image = 'explosion/frame0.png')
-	const pepo = new TopoTierra(puntaje = 250, tiempoDeVidaMaximo = 20, position = game.at(2, 1), image = 'explosion/frame0.png')
-	const pepu = new TopoTiempo(tiempoDeVidaMaximo = 25, position = game.at(2, 2), image = 'explosion/frame0.png')
+	const pepa = new TopoNormal(puntaje = 100, tiempoDeVidaMaximo = 5, position = game.at(0, 0))
+	const pepe = new TopoAgua(puntaje = 150, tiempoDeVidaMaximo = 10, position = game.at(0, 1))
+	const pepi = new TopoFuego(puntaje = 200, tiempoDeVidaMaximo = 15, position = game.at(1, 1))
+	const pepo = new TopoTierra(puntaje = 250, tiempoDeVidaMaximo = 20, position = game.at(2, 1))
+	const pepu = new TopoTiempo(tiempoDeVidaMaximo = 25, position = game.at(2, 2))
+
+	method initialize() {
+	}
+
+	test "TEST REMOVER(MATAR) TOPO DEL BOARD" {
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepa))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepe))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepi))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepo))
+		// Verificar se encuentra la "visual" de pepa en el board.
+		assert.equals(true, game.hasVisual(pepu))
+//		// Remueve pepa del board usando borrar().
+//		pepa.borrar()
+//		// Remueve pepe del board usando borrar().
+//		pepe.borrar()
+//		// Remueve pepi del board usando borrar().
+//		pepi.borrar()
+//		// Remueve pepo del board usando borrar().
+//		pepo.borrar()
+//		// Remueve pepu del board usando borrar().
+//		pepu.borrar()
+	}
 
 	test "TEST PUNTAJE PROPIOS DE UN TOPO" {
 		// El puntaje de pepa es 100.
@@ -161,29 +188,6 @@ describe "Logica de topos" {
 		assert.equals(false, pepu.esLetra())
 	}
 
-	test "TEST REMOVER(MATAR) TOPO DEL BOARD" {
-		// Remueve pepa del board usando matar().
-		pepa.matar()
-		// Remueve pepe del board usando matar().
-		pepe.matar()
-		// Remueve pepi del board usando matar().
-		pepi.matar()
-		// Remueve pepo del board usando matar().
-		pepo.matar()
-		// Remueve pepu del board usando matar().
-		pepu.matar()
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(false, game.hasVisual(pepa))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(false, game.hasVisual(pepe))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(false, game.hasVisual(pepi))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(false, game.hasVisual(pepo))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(false, game.hasVisual(pepu))
-	}
-
 	test "TEST LOGICA TOPOTIEMPO" {
 		// El puntaje de pepu es 100.
 		assert.equals(100, pepu.puntaje())
@@ -205,18 +209,38 @@ describe "Logica de topos" {
 //	}
 }
 
-describe "Logica del mapeo de letras." {
-
-/*mapeo de teclas consta
- * 
- */
-}
-
 describe "Logica del menu." {
 
-/*Menu consta
- * 
- */
+	/*Menu consta de una lista de item pertenecientes a la item
+	 * estos representan una opcion grafica.
+	 * 
+	 */
+	const item1 = new Item(position = game.at(1, 0), image = "test1.jpg")
+	const item2 = new Item(position = game.at(2, 0), image = "test2.jpg")
+	const item3 = new Item(position = game.at(3, 0), image = "test3.jpg")
+
+	test "POSICION DE LOS ITEM" {
+		// Verificar que el  se encuentra en la posicion (,)
+		assert.equals(game.at(1, 0), item1.position())
+		// Verificar que el  se encuentra en la posicion (,)
+		assert.equals(game.at(2, 0), item2.position())
+		// Verificar que el  se encuentra en la posicion (,)
+		assert.equals(game.at(3, 0), item3.position())
+	}
+
+	test "ITEM SELECCIONADO" {
+		/*Los item pueden seleccionarse o deseleccionarse 
+		 * si se presiona la tecla bindeada que ejecute el 
+		 * metodo selecionar() o el metodo  deSeleccionar()
+		 */
+		// Verifica que item1 uno se instacia con seleccion en false.
+		assert.equals(false, item1.seleccionado())
+		// Verifica que item2 uno se instacia con seleccion en false.
+		assert.equals(false, item2.seleccionado())
+		// Verifica que item3 uno se instacia con seleccion en false.
+		assert.equals(false, item3.seleccionado())
+	}
+
 }
 
 describe "Logica del la eleccion de niveles" {
@@ -233,5 +257,4 @@ describe "Logica de juego." {
  * esto incluye la letra y la asignacion de la misma.
  */
 }
-
 
