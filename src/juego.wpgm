@@ -21,7 +21,32 @@ program juego {
 	menu.iniciar()
 	
 	keyboard.space().onPressDo({
-		console.println(menu.indice())
+		try{
+		if (menu.indice() == 'jugar'){
+			menu.limpiarMenu()
+			juego.iniciar()
+			juego._generarHueco()
+		}	if(menu.indice() == 'guia'){
+				menu.limpiarMenu()
+				guia.iniciarGuia()
+			} if(menu.indice() == 'salir'){
+					game.stop()
+			}} catch e: Exception(return 'No se pudo seleccionar')
+//		console.println(menu.indice())
+	})
+	
+	keyboard.backspace().onPressDo({
+		if (game.hasVisual(variablesDeJuego)){
+			juego.terminar()
+			game.allVisuals().forEach({visual => game.removeVisual(visual)})
+			menu.iniciar()
+			}
+		try {
+			game.removeVisual(guia)
+			menu.iniciar()
+		}
+		catch e: wollok.lang.Exception{return 'ya estas en el menu'}
+			
 	})
 	
 	keyboard.enter().onPressDo({

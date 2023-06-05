@@ -73,6 +73,12 @@ class Menu {
 	// getters:
 	method indice() = items.get(indice).get(0);
 	method items() = items;
+	//metodos auxiliares
+	method limpiarMenu() {
+		itemsObj.forEach({_, item =>
+			game.removeVisual(item)
+		})
+	}
 }
 
 class Item {

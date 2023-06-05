@@ -54,9 +54,8 @@ object juego {
 	method huecoLibre() = self.huecosLibres().asList().anyOne()
 	
 	method generarTopo() {
-		const huecoLibre = self.huecoLibre()
 //		conjuntoHuecos.remove(huecoLibre)
-		topos.crearTopo('', huecoLibre.position())
+		topos.crearTopo('', self.huecoLibre().position())
 	}
 	
 	method generarTopo(hueco) {
@@ -143,3 +142,17 @@ object variablesDeJuego {
     	self.actualizarTablero()
     }
 }
+
+object guia {
+	const _position = game.origin()
+	method iniciarGuia() {
+		game.addVisual(self)
+	}
+	method image() = 'guia.png'	
+	method position() = _position
+}
+
+
+
+
+
