@@ -213,7 +213,6 @@ describe "Logica del menu." {
 
 	/*Menu consta de una lista de item pertenecientes a la item
 	 * estos representan una opcion grafica.
-	 * 
 	 */
 	const item1 = new Item(position = game.at(1, 0), image = "test1.jpg")
 	const item2 = new Item(position = game.at(2, 0), image = "test2.jpg")
