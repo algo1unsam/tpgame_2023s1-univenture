@@ -9,16 +9,66 @@ import menu.*
 
 describe "Logica de clases." {
 
-/*Clases consta de 3 clases que base, que contienen los atributos
- * de los objetos como hueco,letra y explosion.
- */
+	/*Clases consta de 3 clases que base, que contienen los atributos
+	 * de los objetos como hueco,letra y explosion.*/
+	const hueco11 = new Hueco(position = game.at(1, 1))
+	const hueco12 = new Hueco(position = game.at(1, 2))
+	const hueco21 = new Hueco(position = game.at(2, 1))
+	const hueco22 = new Hueco(position = game.at(2, 2))
+	const a = new Letra(letra = "a", position = game.at(1, 1))
+	const b = new Letra(letra = "b", position = game.at(1, 2))
+	const c = new Letra(letra = "c", position = game.at(2, 1))
+	const d = new Letra(letra = "d", position = game.at(2, 2))
+
+	test "POSCIONES GENERADAS" {
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(game.at(1, 1), hueco11.position())
+		assert.equals(game.at(1, 1), a.position())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(game.at(1, 2), hueco12.position())
+		assert.equals(game.at(1, 2), b.position())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(game.at(2, 1), hueco21.position())
+		assert.equals(game.at(2, 1), c.position())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(game.at(2, 2), hueco22.position())
+		assert.equals(game.at(2, 2), d.position())
+	}
+
+	test "IDENTIDAD" {
+		// Verficar que "esTopo()" del hueco11 sea false.
+		assert.equals(false, hueco11.esTopo())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(false, hueco12.esTopo())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(false, hueco21.esTopo())
+		// Verficar la posicion de las letra y hueco sea (1,1).
+		assert.equals(false, hueco22.esTopo())
+		// Verficar que "esTopo()" del 'a' sea false.
+		assert.equals(false, a.esTopo())
+		// Verficar que "esTopo()" del 'a' sea false.
+		assert.equals(false, b.esTopo())
+		// Verficar que "esTopo()" del 'a' sea false.
+		assert.equals(false, c.esTopo())
+		// Verficar que "esTopo()" del 'a' sea false.
+		assert.equals(false, d.esTopo())
+	}
+
 }
 
 describe "Logica de letras." {
 
-/*Letras consta de un objeto letras que se encarga de controlar el trafico
- * de letras generadas, verificando que no haya repetidas.
- */
+	/*Letras consta de un objeto letras que se encarga de controlar el trafico
+	 * de letras generadas como una instancia de Letra, verificando que no haya repetidas.
+	 */
+	test"GENERACION DE LETRAS" {
+		// Verifica que la lista interna de letra contenga 26 letras del abecedario.
+		assert.equals(26, letras.letras().size())
+		// Verifica que la lista interna de letra contenga 26 letras del abecedario.
+		assert.equals(26, letras.letrasDic().size())
+	// El metodo letraUnica
+	}
+
 }
 
 describe "Logica de topos" {
@@ -148,12 +198,11 @@ describe "Logica de topos" {
 		assert.equals(1000, pepu_1000_y_5_valores.puntaje())
 	}
 
-	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
-	// Crear el topo PAPUCHO, del tipo normal cuyo puntaje es 100.
-	// Verificar el puntaje de PAPUCHO.
-	// Verfificar posicion de papucho.
-	}
-
+//	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
+//	// Crear el topo PAPUCHO, del tipo normal cuyo puntaje es 100.
+//	// Verificar el puntaje de PAPUCHO.
+//	// Verfificar posicion de papucho.
+//	}
 }
 
 describe "Logica del mapeo de letras." {
@@ -184,4 +233,5 @@ describe "Logica de juego." {
  * esto incluye la letra y la asignacion de la misma.
  */
 }
+
 
