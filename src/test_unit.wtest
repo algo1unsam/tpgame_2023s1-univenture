@@ -242,19 +242,3 @@ describe "Logica del menu." {
 	}
 
 }
-
-describe "Logica del la eleccion de niveles" {
-
-/*Niveles consta
- * 
- */
-}
-
-describe "Logica de juego." {
-
-/*Juego contiene la logica principal del juego,desde la eleccion del topo hasta su
- * generacion en un hueco,el cual tambien es de asignacion aletoria,
- * esto incluye la letra y la asignacion de la misma.
- */
-}
-
