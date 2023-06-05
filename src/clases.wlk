@@ -1,8 +1,9 @@
 import wollok.game.game
+import wlklib.spriteModule.Sprite
 
 class Hueco {
 	var property position;
-	var property image = 'topos/topo_agua/frame0.png';
+	var property image = 'hueco.png';
 	var contador = (1..10).anyOne(); // <-- orientado a objetos
 	
 	method esTopo() = false;
@@ -47,7 +48,15 @@ class Letra {
 }
 
 class Explosion {
-	
+	const property sprite = new Sprite(frames=3, path='explosion/frame#.png')
+	const property position;
+	var image = sprite.getFrame()
 	method esTopo() = false;
-	method matar();
+	method matar() {
+		
+	};
+	method image() = image;
+	method cycle() {
+		image = sprite.cycle()
+	}
 }

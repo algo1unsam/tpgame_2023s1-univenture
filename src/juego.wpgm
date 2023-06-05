@@ -11,87 +11,27 @@ program juego {
 	game.width(7)
  	game.height(4)
   	game.cellSize(168)
+  	game.boardGround('fondo.png')
 
 	const menu = new Menu(items = [
-	['empezar', 'botones/play#.png'],
-	['creditos', 'botones/creditos#.png'],
-	['salir', 'botones/creditos#.png']
+		['jugar', 'menu/lapida_jugar.png','menu/lapida_desactivada.png'],
+		['guia', 'menu/lapida_guia.png','menu/lapida_desactivada.png'],
+		['salir', 'menu/lapida_salir.png','menu/lapida_desactivada.png']
 	])
+	menu.iniciar()
 	
-//	menu.visualizar()
-//	keyboard.a().onPressDo({menu.moverIzquierda()})
-//	keyboard.d().onPressDo({menu.moverDerecha()})
-//	
-//	keyboard.space().onPressDo({
-//		if (menu.indice() == 'empezar') {
-//			menu.romper()
-//		}
-//	})
-
-//	[topo, topo1, topo2, null, null]
-//	
-//	100
-//	
-//	i = 1000
-//	
-//	listatopos = []
-//	listaTiempos = []
-//	(0..1000).forEach({_=>
-//		i = i + inrandom (1..2000) new Range(start=100, end=2000, step=50)
-//		listaTiempos.add(i)
-//	})
-//	
-//	
-//	i=0;
-//	ontick(500,'ontick ' + i) {
-//		i++;
-//		intenta spawnear topo;
-//		onTick(tiemporandom, 'ontick ' + i)
-//		removeTickEvent('ontick ' + i - 1)
-//	}
-//	
-//	ontick(50000) {
-//		try {
-//			removeTickEvent('ontick ' + i-1)
-//			removeTickEvent('ontick ' + i)
-//			removeTickEvent('ontick ' + i+1)
-//			
-//		} catch : e {}
-//	}
-//	
-//
-//	hueco:
-//	intentarSpawnearTopo = 
-//	game.onTick((0...5000).anyOne(), 'desdeHueco ' + self.identity(), {
-//		spawnear
-//		game.removeTickEvent('desdeHueco ' + hueco.identity())
-//	})
-//	
-//	
-//	desde juego:
-//	#{huecos}.forEach({hueco => game.removeTickEvent('desdeHueco ' + hueco.identity())})
-//	
-//	
-//	desde juego:
-//	listaHuecosDisponibles = #{}
-
-	juego._generarPosiciones()
+	keyboard.space().onPressDo({
+		console.println(menu.indice())
+	})
 	
 	keyboard.enter().onPressDo({
 		juego._generarHueco()
 	})
 	
 //	keyboard.space().onPressDo({
-//		juego.generarTopo()
+//		menu.salir()
+//		juego.iniciar()
 //	})
-	
-	keyboard.space().onPressDo({
-		juego.iniciar()
-	})
-	
-	keyboard.shift().onPressDo({
-		juego.terminar()
-	})
 	
 	game.start()
 }

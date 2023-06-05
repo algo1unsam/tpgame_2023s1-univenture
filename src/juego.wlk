@@ -12,20 +12,7 @@ object juego {
 	//	const listaTopos = [];
 	//	const listaLetras = [];
 	
-	method initialize() {
-		const letra = letras.letrasDic().get('g');
-		if(game.hasVisual(letra)) {letra.matar()}
-			
-		const bloqueLetra = { caracterLetra =>
-			const letra = letras.letrasDic().get(caracterLetra)
-			if (game.hasVisual(letra)) {
-				letra.matar()
-			}
-		}
-	
-		letras.abecedario().forEach({letra =>
-			mapeoTeclas.mapearTecla(letra, {bloqueLetra.apply(letra)})
-		})
+	method initialize() {		
 		
 	}
 	
@@ -77,8 +64,10 @@ object juego {
 	}
 	
 	method iniciar() {
+		self.configurarTeclas()
+		self._generarPosiciones()
 		game.addVisual(variablesDeJuego)
-		variablesDeJuego.tiempo(10)
+		variablesDeJuego.tiempo(50)
 		game.onTick(1000, 'tick general del juego', {
 			if (variablesDeJuego.tiempo() <= 0) {
 				self.terminar()
@@ -101,6 +90,20 @@ object juego {
 		})
 		conjuntoHuecos.clear()
 		self._generarPosiciones()
+	}
+	
+	method configurarTeclas() {
+		mapeoTeclas.limpiar()
+		const bloqueLetra = { caracterLetra =>
+			const letra = letras.letrasDic().get(caracterLetra)
+			if (game.hasVisual(letra)) {
+				letra.matar()
+			}
+		}
+	
+		letras.abecedario().forEach({letra =>
+			mapeoTeclas.mapearTecla(letra, {bloqueLetra.apply(letra)})
+		})
 	}
 }
 
