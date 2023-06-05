@@ -32,48 +32,33 @@ package tiposDeTopos {
 
 		var sprite = new Sprite(frames = 7, path = 'topos/topo_tierra/frame#.png')
 		var property image = sprite.getFrame()
-		var property position
-		;
-		var puntaje = 0
-		;
-		var bonusTiempo = 0
-		;
-		const tiempoDeVidaMaximo = 5000
-		;
-		var letraRandom = ''
-		;
-		var velocidad = 10
-		;
-		var loMatoElJugador = true
-		;
-		var puntajeFinDeTiempo = 0
-
-		;
+		var property position;
+		var puntaje = 0;
+		var bonusTiempo = 0;
+		const tiempoDeVidaMaximo = 5000;
+		var letraRandom = '';
+		var velocidad = 10;
+		var loMatoElJugador = true;
+		var puntajeFinDeTiempo = 0;
 		
 		method initialize() {
-			game.addVisual(self)
-		;
+			game.addVisual(self);
             
             essentials.makeCycle(velocidad, sprite.frames() - 1, { image = sprite.cycle()}, 'topoAnimSubir ' + self.identity(), { // cuando termina la animación ejecuta este bloque.
 				self.crearLetraUnica()
 				game.onTick(tiempoDeVidaMaximo, 'topoMaxVida ' + self.identity(), { // entra acá si se pasó de tiempo.
-					loMatoElJugador = false
-				;
+					loMatoElJugador = false;
                     	letraRandom.matar()
-					puntaje = puntajeFinDeTiempo
-				;
+					puntaje = puntajeFinDeTiempo;
 				})
 			}, {
 			})
 		}
 
 		method crearLetraUnica() {
-			letraRandom = letras.letraUnica()
-		;
-			letraRandom.position(position)
-		;
-			game.addVisual(letraRandom)
-		;
+			letraRandom = letras.letraUnica();
+			letraRandom.position(position);
+			game.addVisual(letraRandom);
 		}
 
 		method matar() {
@@ -87,15 +72,12 @@ package tiposDeTopos {
 				variablesDeJuego.sumarPuntaje(puntaje)
 				variablesDeJuego.sumarTiempo(bonusTiempo)
 			} else {
-				essentials.makeCycle(velocidad, sprite.frames() - 1, { sprite.cycle(-1)
-				;
-	            	image = sprite.getFrame()
-				;
+				essentials.makeCycle(velocidad, sprite.frames() - 1, { sprite.cycle(-1);
+	            	image = sprite.getFrame();
 				}, 'topoAnimBajar ' + self.identity(), { self.borrar()}, {
 				})
 			}
-			return puntaje
-		;
+			return puntaje;
 		}
 
 		method borrar() {
@@ -103,19 +85,11 @@ package tiposDeTopos {
 			game.removeTickEvent('topoMaxVida ' + self.identity())
 		}
 
-		method puntaje() = puntaje
-
-		;
-		method bonusTiempo() = bonusTiempo
-
-		;
+		method puntaje() = puntaje;
+		method bonusTiempo() = bonusTiempo;
 		
-		method esTopo() = true
-
-		;
-		method esLetra() = false
-
-		;
+		method esTopo() = true;
+		method esLetra() = false;
 	}
 
 	class TopoAgua inherits Topo {

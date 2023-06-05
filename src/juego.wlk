@@ -51,7 +51,6 @@ object juego {
 	method huecoLibre() = self.huecosLibres().asList().anyOne()
 	
 	method generarTopo() {
-//		conjuntoHuecos.remove(huecoLibre)
 		topos.crearTopo('', self.huecoLibre().position())
 	}
 	
@@ -86,6 +85,7 @@ object juego {
 		})
 		conjuntoHuecos.clear()
 		self._generarPosiciones()
+		end.puntajeFinal(variablesDeJuego.puntaje())
 	}
 	
 	method configurarTeclas() {
@@ -138,6 +138,7 @@ object variablesDeJuego {
     	tiempo = tiempo + _tiempo;
     	self.actualizarTablero()
     }
+    method puntaje() = puntaje
 }
 
 object guia {
@@ -149,7 +150,19 @@ object guia {
 	method position() = _position
 }
 
-
+object end {
+	
+	var texto = 'Puntaje final fue: ';
+	const position = game.center()
+	
+    method textColor() = "FFFFFFFF";
+    method text() = texto;
+    method position() = position
+    method puntajeFinal(_puntaje){
+    	texto = texto + _puntaje
+    	game.addVisual(self)
+    }
+}
 
 
 
