@@ -164,6 +164,7 @@ object end {
     	game.addVisual(self)
     }
     method estadoFinal() = _estado
+    method limpiarScore(){texto ='SCORE: '; }
 }
 
 

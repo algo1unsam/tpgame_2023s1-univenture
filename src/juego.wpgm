@@ -17,6 +17,7 @@ program juego {
 	keyboard.space().onPressDo({ try {
 		if (menu.indice() == 'jugar') {
 			menu.limpiarMenu()
+			end.limpiarScore()
 			juego.iniciar()
 			juego._generarHueco()
 			juego._generarHueco()
