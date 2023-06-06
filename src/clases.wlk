@@ -68,6 +68,8 @@ class Texto {
 	var textColor = "FFFFFFFF"
 	var valor
 	
+	method esTopo() = false;
+	method borrar() {}
 	method initialize(){
 		if(valor < 0){
 			textColor = "E00700FF"
@@ -94,7 +96,7 @@ class TextoPuntaje inherits Texto {
 	}
 	
 	override method text(){
-		return valor.toString() + " Puntos"
+		return "                       " + valor.toString() + " Puntos"
 	}
 	
 }
@@ -106,7 +108,7 @@ class TextoTiempo inherits Texto {
 	}
 	
 	override method text(){
-		return "\n" + valor.toString() + " Segundos"
+		return "\n                       " + valor.toString() + " Segundos"
 	}
 	
 }
