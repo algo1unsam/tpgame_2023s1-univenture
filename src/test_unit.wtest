@@ -83,44 +83,23 @@ describe "Logica de topos" {
 	const pepa = new TopoTierra(position = game.at(0, 0))
 	const pepe = new TopoAgua(position = game.at(0, 1))
 	const pepi = new TopoFuego(position = game.at(1, 1))
-	const pepo = new TopoTierra( position = game.at(2, 1))
+	const pepo = new TopoBomba(position = game.at(2, 1))
 	const pepu = new TopoViento(position = game.at(2, 2))
 
 	method initialize() {
 	}
 
-	test "TEST REMOVER(MATAR) TOPO DEL BOARD" {
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(true, game.hasVisual(pepa))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(true, game.hasVisual(pepe))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(true, game.hasVisual(pepi))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(true, game.hasVisual(pepo))
-		// Verificar se encuentra la "visual" de pepa en el board.
-		assert.equals(true, game.hasVisual(pepu))
-//		// Remueve pepa del board usando borrar().
-//		pepa.borrar()
-//		// Remueve pepe del board usando borrar().
-//		pepe.borrar()
-//		// Remueve pepi del board usando borrar().
-//		pepi.borrar()
-//		// Remueve pepo del board usando borrar().
-//		pepo.borrar()
-//		// Remueve pepu del board usando borrar().
-//		pepu.borrar()
-	}
-
 	test "TEST PUNTAJE PROPIOS DE UN TOPO" {
-		// El puntaje de pepa es 100.
-		assert.equals(100, pepa.puntaje())
-		// El puntaje de pepe es 150.
-		assert.equals(150, pepe.puntaje())
-		// El puntaje de pepi es 200.
-		assert.equals(200, pepi.puntaje())
-		// El puntaje de pepo es 250.
-		assert.equals(250, pepo.puntaje())
+		// El puntaje de pepa(TopoTierra) es 5.
+		assert.equals(5, pepa.puntaje())
+		// El puntaje de pepe(TopoAgua) es 50.
+		assert.equals(50, pepe.puntaje())
+		// El puntaje de pepi(TopoFuego) es 50.
+		assert.equals(50, pepi.puntaje())
+		// El puntaje de pepo(TopoViento) es 0.
+		assert.equals(0, pepu.puntaje())
+		// El puntaje de pepo(TopoBomba) es -100.
+		assert.equals(-100, pepo.puntaje())
 	}
 
 	test "TEST DE VISUALES" {
@@ -152,17 +131,6 @@ describe "Logica de topos" {
 		assert.equals(game.at(2, 2), pepu.position())
 	}
 
-//
-//	test "TEST TIEMPO DE VIDA MAXIMA DE UN TOPO" {
-//		// El puntaje de pepa es 5.
-//		assert.equals(5, pepa._tiempoDeVidaMaximo())
-//		// El puntaje de pepe es 10.
-//		assert.equals(10, pepe._tiempoDeVidaMaximo())
-//		// El puntaje de pepi es 15.
-//		assert.equals(15, pepi._tiempoDeVidaMaximo())
-//		// El puntaje de pepo es 20.
-//		assert.equals(20, pepo._tiempoDeVidaMaximo())
-//	}
 	test "TEST IDENTIDAD DE UN TOPO" {
 		// La identida de pepa como "esTopo" es true.
 		assert.equals(true, pepa.esTopo())
@@ -174,28 +142,17 @@ describe "Logica de topos" {
 		assert.equals(true, pepo.esTopo())
 		// La identida de pepu como "esTopo" es true.
 		assert.equals(true, pepu.esTopo())
-		// La identida de pepa como "esLetra" es false.
-		assert.equals(false, pepa.esLetra())
-		// La identida de pepe como "esLetra" es false.
-		assert.equals(false, pepe.esLetra())
-		// La identida de pepi como "esLetra" es false.
-		assert.equals(false, pepi.esLetra())
-		// La identida de pepi como "esLetra" es false.
-		assert.equals(false, pepi.esLetra())
-		// La identida de pepu como "esLetra" es false.
-		assert.equals(false, pepo.esLetra())
-		// La identida de pepu como "esLetra" es false.
-		assert.equals(false, pepu.esLetra())
 	}
 
-	test "TEST LOGICA TOPOTIEMPO" {
+	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
+		// Crear el topo PAPUCHO, del tipo normal cuyo puntaje es 5 y un bonustiempo de 5
+		const papucho = new TopoTierra(bonusTiempo = 5, tiempoDeVidaMaximo = 7500, position = game.at(2, 2))
+		// Verificar el puntaje de PAPUCHO.
+		assert.equals(5, papucho.puntaje())
+		//Verificar que PAPUCHO otorga un bonus de tiempo de 5s.
+		assert.equals(5, papucho.bonusTiempo())
 	}
 
-//	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
-//	// Crear el topo PAPUCHO, del tipo normal cuyo puntaje es 100.
-//	// Verificar el puntaje de PAPUCHO.
-//	// Verfificar posicion de papucho.
-//	}
 }
 
 describe "Logica del menu." {
@@ -230,3 +187,4 @@ describe "Logica del menu." {
 	}
 
 }
+
