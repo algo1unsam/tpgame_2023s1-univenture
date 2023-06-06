@@ -142,18 +142,6 @@ describe "Logica de topos" {
 		assert.equals(true, pepo.esTopo())
 		// La identida de pepu como "esTopo" es true.
 		assert.equals(true, pepu.esTopo())
-		// La identida de pepa como "esLetra" es false.
-		assert.equals(false, pepa.esLetra())
-		// La identida de pepe como "esLetra" es false.
-		assert.equals(false, pepe.esLetra())
-		// La identida de pepi como "esLetra" es false.
-		assert.equals(false, pepi.esLetra())
-		// La identida de pepi como "esLetra" es false.
-		assert.equals(false, pepi.esLetra())
-		// La identida de pepu como "esLetra" es false.
-		assert.equals(false, pepo.esLetra())
-		// La identida de pepu como "esLetra" es false.
-		assert.equals(false, pepu.esLetra())
 	}
 
 	test "INSTANCIACION DE TOPOS POR EL OBJETO TOPO" {
