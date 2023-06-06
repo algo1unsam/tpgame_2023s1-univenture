@@ -139,6 +139,7 @@ object variablesDeJuego {
     	self.actualizarTablero()
     }
     method puntaje() = puntaje
+    method limpiarPuntaje(){ puntaje = 0}
 }
 
 object guia {
