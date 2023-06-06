@@ -78,14 +78,15 @@ package tiposDeTopos {
 				})
 			}
 			//visualdetext
-			const textoTiempo = new TextoTiempo(valor = bonusTiempo, position = position)
-			const textoPuntaje = new TextoPuntaje(valor = puntaje, position = position)
-			game.addVisual(textoTiempo)
-			game.addVisual(textoPuntaje)
-			essentials.makeCycle(1100, 1, {},'textoPuntaje ' + self.identity(),{
-              game.removeVisual(textoPuntaje)
-              game.removeVisual(textoTiempo)
-            },{})
+			if (loMatoElJugador) {
+				const textoTiempo = new TextoTiempo(valor = bonusTiempo, position = position)
+				const textoPuntaje = new TextoPuntaje(valor = puntaje, position = position)
+				game.addVisual(textoTiempo)
+				game.addVisual(textoPuntaje)
+				essentials.makeCycle(1100, 1, {},'textoPuntaje ' + self.identity(),{
+              	game.removeVisual(textoPuntaje)
+              	game.removeVisual(textoTiempo)
+            },{})}
 			return puntaje;
 		}
 
