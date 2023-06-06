@@ -14,29 +14,12 @@ program juego {
 	game.boardGround('fondo.png')
 	const menu = new Menu(items = [ ['jugar', 'menu/lapida_jugar.png','menu/lapida_desactivada.png'], ['guia', 'menu/lapida_guia.png','menu/lapida_desactivada.png'], ['salir', 'menu/lapida_salir.png','menu/lapida_desactivada.png'] ])
 	menu.iniciar()
-	keyboard.space().onPressDo({ try {
+	const accionSpace = {try {
 		if (menu.indice() == 'jugar') {
 			menu.limpiarMenu()
 			variablesDeJuego.limpiarPuntaje()
 			end.limpiarScore()
 			juego.iniciar()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
-			juego._generarHueco()
 			juego._generarHueco()
 			juego._generarHueco()
 			juego._generarHueco()
@@ -49,11 +32,9 @@ program juego {
 		if (menu.indice() == 'salir') {
 			game.stop()
 		}
-	} catch e : Exception
-		(return 'No se pudo seleccionar')
-	})
-	keyboard.backspace().onPressDo({ 
-		if (game.hasVisual(variablesDeJuego)) {
+	} catch e : Exception ('No se pudo seleccionar')}
+	
+	const accionBackspace = {if (game.hasVisual(variablesDeJuego)) {
 			juego.terminar()
 			game.allVisuals().forEach({ visual => game.removeVisual(visual)})
 			menu.iniciar()
@@ -67,7 +48,10 @@ program juego {
 			menu.iniciar()
 		} catch e : wollok.lang.Exception {
 			return 'ya estas en el menu'
-		}
-	})
+		}}
+		
+	mapeoTeclas.mapearTecla('space', accionSpace)
+	mapeoTeclas.mapearTecla('backspace', accionBackspace)
+	
 	game.start()
 }

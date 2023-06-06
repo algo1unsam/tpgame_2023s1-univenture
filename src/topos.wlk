@@ -9,7 +9,7 @@ import clases.*
 object topos {
 
 	/** Crea un topo a partir de un tipo en string */
-	method crearTopo(tipo, pos) {
+	method crearTopo(pos) {
 		// logica de segun el tipo devuelve un topo.
 		const topoElegido = [ 'fuego', 'normal', 'agua', 'viento', 'bomba' ].anyOne()
 		if (topoElegido == 'fuego') {
@@ -29,7 +29,7 @@ object topos {
 
 package tiposDeTopos {
 
-	class Topo {
+	class Topo inherits ObjetoPantalla {
 
 		var sprite = new Sprite(frames = 7, path = 'topos/topo_tierra/frame#.png')
 		var property image = sprite.getFrame()
@@ -41,6 +41,7 @@ package tiposDeTopos {
 		var velocidad = 10;
 		var loMatoElJugador = true;
 		var puntajeFinDeTiempo = 0;
+		var tiempoFinDeTiempo = 0
 		
 		method initialize() {
 			game.addVisual(self);
@@ -49,8 +50,9 @@ package tiposDeTopos {
 				self.crearLetraUnica()
 				game.onTick(tiempoDeVidaMaximo, 'topoMaxVida ' + self.identity(), { // entra acá si se pasó de tiempo.
 					loMatoElJugador = false;
-                    	letraRandom.matar()
 					puntaje = puntajeFinDeTiempo;
+					bonusTiempo = tiempoFinDeTiempo
+                    letraRandom.matar()
 				})
 			}, {})
 		}
@@ -61,7 +63,7 @@ package tiposDeTopos {
 			game.addVisual(letraRandom);
 		}
 
-		method matar() {
+		override method matar() {
 			if (loMatoElJugador) {
 				self.borrar()
 				var explosion = new Explosion(position = position)
@@ -69,16 +71,15 @@ package tiposDeTopos {
 				image = sprite.getFrame(0)
 				essentials.makeCycle(30, explosion.sprite().frames() - 1, { explosion.cycle()}, 'exp' + self.identity(), { game.removeVisual(explosion)}, {
 				})
-				variablesDeJuego.sumarPuntaje(puntaje)
-				variablesDeJuego.sumarTiempo(bonusTiempo)
 			} else {
 				essentials.makeCycle(velocidad, sprite.frames() - 1, { sprite.cycle(-1);
 	            	image = sprite.getFrame();
 				}, 'topoAnimBajar ' + self.identity(), { self.borrar()}, {
 				})
 			}
+			variablesDeJuego.sumarPuntaje(puntaje)
+			variablesDeJuego.sumarTiempo(bonusTiempo)
 			//visualdetext
-			if (loMatoElJugador) {
 				const textoTiempo = new TextoTiempo(valor = bonusTiempo, position = position)
 				const textoPuntaje = new TextoPuntaje(valor = puntaje, position = position)
 				game.addVisual(textoTiempo)
@@ -86,11 +87,10 @@ package tiposDeTopos {
 				essentials.makeCycle(1100, 1, {},'textoPuntaje ' + self.identity(),{
               	game.removeVisual(textoPuntaje)
               	game.removeVisual(textoTiempo)
-            },{})}
-			return puntaje;
+            },{})
 		}
 
-		method borrar() {
+		override method borrar() {
 			game.removeVisual(self)
 			game.removeTickEvent('topoMaxVida ' + self.identity())
 		}
@@ -98,8 +98,7 @@ package tiposDeTopos {
 		method puntaje() = puntaje;
 		method bonusTiempo() = bonusTiempo;
 		
-		method esTopo() = true;
-		method esLetra() = false;
+		override method esTopo() = true;
 	}
 
 
@@ -117,7 +116,6 @@ package tiposDeTopos {
 			sprite = new Sprite(frames = 5, path = 'topos/topo_agua/frame#.png')
 			tiempoDeVidaMaximo = 2500
 			puntaje = 50
-			
 			velocidad = 5
 			super()
 		}
@@ -132,6 +130,7 @@ package tiposDeTopos {
 			tiempoDeVidaMaximo = 6000
 			puntaje = 50
 			bonusTiempo = -2
+			tiempoFinDeTiempo = 1
 			super()
 		}
 
@@ -157,6 +156,8 @@ package tiposDeTopos {
 			bonusTiempo = -10
 			velocidad = 10
 			tiempoDeVidaMaximo = 3000
+			puntajeFinDeTiempo = 10
+			tiempoFinDeTiempo = 0
 			super()
 		}
 

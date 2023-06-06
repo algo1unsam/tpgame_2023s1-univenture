@@ -11,7 +11,7 @@ object mapeoTeclas {
 		['m',keyboard.m()],['n',keyboard.n()],['o',keyboard.o()],['p',keyboard.p()],
 		['q',keyboard.q()],['r',keyboard.r()],['s',keyboard.s()],['t',keyboard.t()],
 		['u',keyboard.u()],['v',keyboard.v()],['w',keyboard.w()],['x',keyboard.x()],
-		['y',keyboard.y()],['z',keyboard.z()],['space',keyboard.space()]
+		['y',keyboard.y()],['z',keyboard.z()],['space',keyboard.space()], ['backspace', keyboard.backspace()]
 	]
 	
 	/** Contexto de todas las las keys. */

@@ -51,11 +51,11 @@ object juego {
 	method huecoLibre() = self.huecosLibres().asList().anyOne()
 	
 	method generarTopo() {
-		topos.crearTopo('', self.huecoLibre().position())
+		topos.crearTopo( self.huecoLibre().position())
 	}
 	
 	method generarTopo(hueco) {
-		topos.crearTopo('', hueco.position())
+		topos.crearTopo( hueco.position())
 	}
 	
 	method iniciar() {
@@ -89,7 +89,6 @@ object juego {
 	}
 	
 	method configurarTeclas() {
-		mapeoTeclas.limpiar()
 		const bloqueLetra = { caracterLetra =>
 			const letra = letras.letrasDic().get(caracterLetra)
 			if (game.hasVisual(letra)) {

@@ -1,14 +1,17 @@
 import wollok.game.game
 import wlklib.spriteModule.Sprite
 
-class Hueco {
+class ObjetoPantalla{
+	method matar(){}
+	method esTopo() = false;
+	method borrar(){}
+}
+
+class Hueco inherits ObjetoPantalla{
 	var property position;
 	var property image = 'hueco.png';
 	var contador = (1..10).anyOne(); // <-- orientado a objetos
-	
-	method esTopo() = false;
-	method matar(){};
-	method borrar() {
+	override method borrar() {
 		game.removeVisual(self)
 	}
 	
@@ -23,7 +26,7 @@ class Hueco {
 	}
 }
 
-class Letra {
+class Letra inherits ObjetoPantalla{
 	const property letra;
 	var property position;
 	var image = null;
@@ -34,42 +37,38 @@ class Letra {
 	
 	method image() = image;
 	
-	method esTopo() = false;
-	method matar() {
+	override method matar() {
 		self.borrar()
 		const objetosEnPosicion = game.getObjectsIn(position);
 		objetosEnPosicion.remove(self)
 		objetosEnPosicion.forEach({objeto => objeto.matar()})
 	}
 	
-	method borrar() {
+	override method borrar() {
 		game.removeVisual(self)
 	}
 }
 
-class Explosion {
+class Explosion inherits ObjetoPantalla{
 	const property sprite = new Sprite(frames=3, path='explosion/frame#.png')
 	const property position;
 	var image = sprite.getFrame()
-	method esTopo() = false;
-	method matar() {
-		
-	};
+	
 	method image() = image;
+	
 	method cycle() {
 		image = sprite.cycle()
 	}
+
 }
 
-class Texto {
+class Texto inherits ObjetoPantalla {
 	
 	var position 
 	var text= "green"
 	var textColor = "FFFFFFFF"
 	var valor
 	
-	method esTopo() = false;
-	method borrar() {}
 	method initialize(){
 		if(valor < 0){
 			textColor = "E00700FF"
