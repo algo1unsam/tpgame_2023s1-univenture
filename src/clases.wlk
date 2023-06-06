@@ -60,3 +60,58 @@ class Explosion {
 		image = sprite.cycle()
 	}
 }
+
+class Texto {
+	
+	var position 
+	var text= "green"
+	var textColor = "FFFFFFFF"
+	var valor
+	
+	method initialize(){
+		if(valor < 0){
+			textColor = "E00700FF"
+		}else if (valor > 0){
+			textColor = "30E004FF"
+		}
+	}
+	
+	method position(){
+		return position
+	}
+	
+	method text()
+	
+	method textColor(){
+		return textColor
+	}
+}
+
+class TextoPuntaje inherits Texto {
+	
+	override method initialize(){
+		super()
+	}
+	
+	override method text(){
+		return valor.toString() + " Puntos"
+	}
+	
+}
+
+class TextoTiempo inherits Texto {
+	
+	override method initialize(){
+		super()
+	}
+	
+	override method text(){
+		return "\n" + valor.toString() + " Segundos"
+	}
+	
+}
+
+
+
+
+

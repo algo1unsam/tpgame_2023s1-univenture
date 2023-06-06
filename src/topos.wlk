@@ -3,7 +3,8 @@ import letras.*
 import juego.variablesDeJuego
 import wlklib.spriteModule.*
 import wlklib.essentials
-import clases.Explosion
+import clases.*
+
 
 object topos {
 
@@ -43,7 +44,7 @@ package tiposDeTopos {
 		
 		method initialize() {
 			game.addVisual(self);
-            
+			
             essentials.makeCycle(velocidad, sprite.frames() - 1, { image = sprite.cycle()}, 'topoAnimSubir ' + self.identity(), { // cuando termina la animación ejecuta este bloque.
 				self.crearLetraUnica()
 				game.onTick(tiempoDeVidaMaximo, 'topoMaxVida ' + self.identity(), { // entra acá si se pasó de tiempo.
@@ -51,8 +52,7 @@ package tiposDeTopos {
                     	letraRandom.matar()
 					puntaje = puntajeFinDeTiempo;
 				})
-			}, {
-			})
+			}, {})
 		}
 
 		method crearLetraUnica() {
@@ -77,6 +77,15 @@ package tiposDeTopos {
 				}, 'topoAnimBajar ' + self.identity(), { self.borrar()}, {
 				})
 			}
+			//visualdetext
+			const textoTiempo = new TextoTiempo(valor = bonusTiempo, position = position)
+			const textoPuntaje = new TextoPuntaje(valor = puntaje, position = position)
+			game.addVisual(textoTiempo)
+			game.addVisual(textoPuntaje)
+			essentials.makeCycle(1100, 1, {},'textoPuntaje ' + self.identity(),{
+              game.removeVisual(textoPuntaje)
+              game.removeVisual(textoTiempo)
+            },{})
 			return puntaje;
 		}
 
