@@ -1,8 +1,20 @@
 import wollok.game.*
-import pepita.*
+import menu.Menu
+import topos.topos
+import clases.*
+import juego.*
+import letras.letras
+import mapeoTeclas.*
+import config.*
 
 program juego {
 	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.width(7)
+	game.height(4)
+	game.cellSize(168)
+	game.boardGround('fondo.png')
+	//Setting
+	config.iniciar()
+	
 	game.start()
 }
